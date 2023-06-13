@@ -128,3 +128,7 @@ interface DeepScatterSampleEvent {
 interface DeepScatterFieldsEvent {
     fields?: string[]
 }
+
+interface DeepScatterSchemaEvent {
+    schema?: any
+}
