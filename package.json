@@ -48,6 +48,7 @@
 	"types": "./dist/index.d.ts",
 	"type": "module",
 	"dependencies": {
+		"deepscatter": "^2.11.1",
 		"js-yaml": "^4.1.0"
 	}
 }
