@@ -26,6 +26,7 @@
         if (!debug) return
         console.debug(details?.status)
         if (details?.everything) {
+            console.debug('encoding')
             console.table(encoding)
         }
         if (Array.isArray(misc) && misc.length > 0) {
@@ -116,8 +117,8 @@
 
     import type {RootChannel, ColorChannel} from 'deepscatter/global.d.ts'
 
-    export let xField: string;
-    export let yField: string;
+    export let xField: string = 'x'
+    export let yField: string = 'y'
     export let cField: string | null = null;
 
     export let xTransform: Transform | undefined = undefined;
@@ -194,7 +195,7 @@
     import type {
         Points, Extent, Extents, DeepScatterReadyEvent, 
         DeepScatterExtentEvent, DeepScatterSampleEvent,
-        DeepScatterFieldsEvent
+        DeepScatterFieldsEvent, DeepScatterSchemaEvent
     } from '$lib/NomicAi/types'
 
     // let plot: DeepScatter | null = null
@@ -212,6 +213,7 @@
     }
 
 
+    let schema: any = null
     $: fields = (ready ? plot?._root?.table?.schema?.fields : []) as string[]
 
     // NOTE: internal props
@@ -223,6 +225,7 @@
     $: dispatch('ready', {ready} as DeepScatterReadyEvent)
     $: dispatch('fields', {fields} as DeepScatterFieldsEvent)
     $: dispatch('extents', {extents} as DeepScatterExtentEvent)
+    $: dispatch('schema', {schema} as DeepScatterSchemaEvent)
 
 
     // NOTE: have to asyncrously import deepscatter to handle SSR
@@ -232,7 +235,7 @@
     // import Deepscatter from 'deepscatter?client';
     onMount(async () => {        
         const Scatterplot = await import('deepscatter');
-        doDebug({status: 'Deepscatter imported'}, Scatterplot)
+        doDebug({status: 'Deepscatter imported', everything:true}, Scatterplot)
         Deepscatter = Scatterplot.default;
     });
 
@@ -334,6 +337,9 @@
                     window.plot = debug ? plot : null
                 })
                 .then(() => plotting = false)
+                .then(async () => {
+                    schema = await plot?._root.schema()
+                })
                 // .then(() => plot._zoom.initialize_zoom())
                 // .then( () => destroyWebGLInstances())          
 		}, delayPlotAPI);
