@@ -53,10 +53,23 @@
     }
 
 </script>
-<div class="grid grid-cols-5 place-items-center">
-    <div class="bg-sky-100 h-16">
+<div class="grid grid-cols-4 place-items-top justify-items-center px-8">
+    <div class="prose w-full">
+        <h1>
+            Dataset:
+        </h1>
+        <ul class="overflow-x-scroll">
+            {#each Object.keys(meta) as key}
+            <li>
+                <span class="font-bold">
+                    {key}:
+                </span>
+                {meta[key]}
+            </li>
+            {/each}                
+        </ul>
     </div>
-    <div class="col-span-3">
+    <div class="col-span-2">
         <DeepScatter 
             {url} {debug} {pause}
             zoomBalance={0.75}
