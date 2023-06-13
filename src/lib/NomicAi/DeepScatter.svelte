@@ -1,159 +1,206 @@
 <script lang="ts">
+    // type datamap = Record<string, number>[];
     import { onMount } from 'svelte';
     import { browser } from '$app/environment';
 
     import { createEventDispatcher } from 'svelte';
     const dispatch = createEventDispatcher();
 
-    interface DeepScatterReadyEvent {
-        ready: boolean
-    }
-    $: dispatch('ready', {ready} as DeepScatterReadyEvent)
-    
-    type Extent = [number, number]
-    type Extents = {
-        x: Extent
-        y: Extent
-        z: Extent
-    }
-    const emptyExtents = {x: null, y: null, z: null}
 
-    interface DeepScatterExtentEvent {
-        extents: Extents
-    }
+    export let url: string;
 
-    $: dispatch('extents', {extents} as DeepScatterExtentEvent)
-    $: dispatch('fields', {fields})
-    
-    
-    let Deepscatter = null
-    type DeepScatter = typeof Deepscatter    
-    // import Deepscatter from 'deepscatter';
-    // import Deepscatter from 'deepscatter?client';
-    onMount(async () => {        
-        const Scatterplot = await import('deepscatter');
-        if (debug) console.debug(Scatterplot)
-        Deepscatter = Scatterplot.default;
-    });
-    
+    export let debug: true;
+    export let pause: false;
 
-    // NOTE: required props
-    export let url: string
-
-
-    // NOTE: props with defaults
-    export let htmlID = 'deepscatter'
-    export let backgroundColor = '#fff'
     export let width = 600;
     export let height = 400;
-    export let nPoints = 1000;
-    
-    export let xField = 'x';
-    export let yField = 'y';    
-    export let xTransform = 'literal';
-    export let yTransform = 'literal';
 
+    type DebugDetails = {
+        status:string
+        everything?:boolean
+        event?: Event
+    }
+    type DebugMisc = any[]
 
-    interface DeepScatterColorSpecifcation {
-        field?: string;
-        range?: string;
-        domain?: [number, number];
-        transform?: string;
-        datamap?: Record<string, number>[];
-        reference?: string;
+    const doDebug = (details?:DebugDetails, ...misc:DebugMisc) => {
+        if (!debug) return
+        console.debug(details?.status)
+        if (details?.everything) {
+            console.table(encoding)
+        }
+        if (Array.isArray(misc) && misc.length > 0) {
+            console.debug(misc)
+        }
     }
 
-    export let cField = 'z';
-    export let cRange = 'viridis'
-    export let cSpec: DeepScatterColorSpecifcation
-
-    
-    export let pointSize = 5
-    export let alpha = 25
-    export let zoomBalance = .75
-
-    // NOTE: for redrawing
-    const duration = 1
-    export let debug = true
-
+    export let htmlID: string = "deepscatter";
     
 
 
-    // For trying to autofit the plot to the container    
-    export let autofit = true
-    let autofitWidth = width
-    let autofitHeight = height
-    $: w = autofit ? autofitWidth : width
-    $: h = autofit ? autofitHeight : height
+    import type {ZoomAlign, Transform, constant} from '$lib/NomicAi/types'
+    import { defaultAPICall} from '$lib/NomicAi/constants'
+    
+    /*----------------------------------------------------------------------------------
+    **
+    **  NOTE: The following are all defined in the global.d.ts file
+    **  of deepscatter. These are all standard types. We will handle the
+    **  more complex types below
+    **  
+    **  URL: https://github.com/nomic-ai/deepscatter/blob/main/src/global.d.ts#L270
+    **
+    **
+    **
+    **----------------------------------------------------------------------------------*/
+  
+    
+    // NOTE: these are note exported to a level we can import
+    // import {default_API_call} from 'deepscatter/defaults.ts'
+    import type {ZoomCall, Labelcall, Encoding} from 'deepscatter/global.d.ts'
+    
 
-    // For trying to debounce the redrawing
-    export let delayPlotAPI = 500;
-    export let delayDestory = 250;
-    let plotting = false
+    /** The magnification coefficient for a zooming item */
+    export let zoomBalance:number = defaultAPICall.zoomBalance
+    
+    /** The length of time to take for the transition to this state. */
+    export let duration:number = defaultAPICall.duration
 
-    let timer:ReturnType<typeof setTimeout>;
-    const debouncePlotAPI = (opts:any) => {
-        if (plotting) return
-        if (debug) console.debug('debouncePlotAPI', {plotting, ready})
-        // NOTE: this can result in the following warning: 
-        //       There are too many active WebGL contexts on this page, 
-        //       the oldest context will be lost.
-		clearTimeout(timer);
-        plotting = true
-        timer = setTimeout(async () => {
-            // console.log('setTime', debouncing, ready)
-            // ready = false;           
-            plot.plotAPI({ duration, ...opts})
-                .then(() => ready = true)
-                .then(() => {
-                    let cmap = cSpec?.datamap || null
-                    if (cmap !== null) {
-                        addIdentifierColumn(cSpec.field, cmap, cSpec?.reference)
-                        // plot?.add_identifier_column(cSpec.field, cmap, cSpec?.reference)
-                    }
-                })
-                .then( () => window.plot = plot)
-                .then( () => plotting = false) 
-                // .then(() => plot._zoom.initialize_zoom())
-                // .then( () => destroyWebGLInstances())          
-		}, delayPlotAPI);
-	}
+    /** The base point size for aes is modified */
+    export let pointSize: number = defaultAPICall.pointSize
+    
+    /** The maximum number of points to load */
+    export let maxPoints: number = defaultAPICall.maxPoints
 
-    let dimer:ReturnType<typeof setTimeout>;
-    let destorying = false
-    const debounceDestroy = async () => {
-        if (destorying) return
-        // NOTE: this can result in the following warning: 
-        //       There are too many active WebGL contexts on this page, 
-        //       the oldest context will be lost.
-        clearTimeout(dimer);
-        destorying = true
-        return new Promise((resolve) => {
-            dimer = setTimeout(async () => {
-                if (debug) console.log('debounceDestroy timeout');
-                destroy().then(() => {
-                    resolve()
-                    destorying = false
-                    destroyWebGLInstances()
-                })  
-            }, delayDestory);
-        });
+    /** Overall screen saturation target at average point density */
+    export let alpha: number = defaultAPICall.alpha;
+
+    /** A function defind as a string that takes implied argument 'datum' */
+    export let clickFunction: string | undefined = undefined
+
+    export let zoomAlign: ZoomAlign = defaultAPICall.zoomAlign
+
+
+    export let zoomCall: ZoomCall | undefined = undefined
+
+    /* NOTE: this type are defined here:
+    ** https://github.com/nomic-ai/deepscatter/blob/main/src/global.d.ts#LL245-L267C55
+    ** and included in NomicAi/types.ts for convenience
+    */
+    export let LabelCall: Labelcall = null
+
+    // NOTE: rather than use APICall.backgroundOptions, we will deconstruct them 
+    // and then reconstruct them
+    export let bgColor: string = defaultAPICall.backgroundOptions.color
+    export let bgOpacity: [number, number] = defaultAPICall.backgroundOptions.opacity
+    export let bgSize: [number, number] = defaultAPICall.backgroundOptions.size
+    export let bgMouseover: boolean = defaultAPICall.backgroundOptions.mouseover
+    $: backgroundOptions = {
+        color: bgColor,
+        opacity: bgOpacity,
+        size: bgSize,
+        mouseover: bgMouseover
     };
 
-    const destroy = async () => {
-        if (plot !== null) {
-            plot.destroy()
-            if (debug) console.log('destroyed', plot)
-            ready = false;
-        }
-        return Promise.resolve();
-    }
+    /*----------------------------------------------------------------------------------
+    **
+    **  NOTE: here we deconstrcut the Encoding type and then reconstruct it
+    **  URL: https://github.com/nomic-ai/deepscatter/blob/main/src/global.d.ts#L122-L207
+    **
+    **----------------------------------------------------------------------------------*/
+
+    import type {range, domain, Range, Domain,
+    
+    Conditional,
+    ConditionalChannel,
+    LambdaChannel,
+    FunctionalChannel,} from '$lib/NomicAi/types'
+
+    import type {RootChannel, ColorChannel} from 'deepscatter/global.d.ts'
+
+    export let xField: string;
+    export let yField: string;
+    export let cField: string | null = null;
+
+    export let xTransform: Transform | undefined = undefined;
+    export let yTransform: Transform | undefined = undefined;
+    export let cTransform: Transform | undefined = undefined;
+
+    export let xDomain: domain | undefined = undefined;
+    export let yDomain: domain | undefined = undefined;
+    export let cDomain: Domain | undefined = undefined;
+
+    export let xRange: range | undefined = undefined;
+    export let yRange: range | undefined = undefined;
+    export let cRange: Range | undefined = undefined;
+
+    export let xConstant: constant = undefined;
+    export let yConstant: constant = undefined;
+    export let cConstant: constant = undefined;
 
     
-    // let plot: DeepScatter | null = null
-    let plot: any | null = null
-    let ready: boolean = false
+    $: xEncoding = {
+        field: xField,
+        transform: xTransform,
+        domain: xDomain,
+        range: xRange,
+        constant: xConstant
+    } as RootChannel
+
+    $: yEncoding = {
+        field: yField,
+        transform: yTransform,
+        domain: yDomain,
+        range: yRange,
+        constant: yConstant
+    } as RootChannel 
+
+    $: cEncoding = {
+        field: cField,
+        transform: cTransform,
+        domain: cDomain,
+        range: cRange,
+        constant: cConstant
+    } as (ColorChannel | null)
     
+    $: encoding = {
+        x: xEncoding,
+        y: yEncoding,
+        color: cEncoding.field === null ? null : cEncoding
+    } as Encoding
+
+
+    $: options = {
+        alpha,
+        duration,
+        encoding,
+
+        source_url: url,
+        
+        max_points: maxPoints,
+        point_size: pointSize,
+
+        zoom_align:   zoomAlign,
+        zoom_balance: zoomBalance,
+        background_options:backgroundOptions,
+        background_color: bgColor,
+
+        click_function: clickFunction,
+        zoom_call: zoomCall,
+        labelcall: LabelCall,
+    }  
+
+
+
+    // NOTE: some events to keep track of
+    import type {
+        Points, Extent, Extents, DeepScatterReadyEvent, 
+        DeepScatterExtentEvent, DeepScatterSampleEvent,
+        DeepScatterFieldsEvent
+    } from '$lib/NomicAi/types'
+
+    // let plot: DeepScatter | null = null
+    export let plot: any | null = null
+    export let ready: boolean = false
+
     $: if (browser && Deepscatter !== null) {
         // To handle redraws, we need to destroy the plot and recreate it   
         debounceDestroy().then(() => {
@@ -164,70 +211,39 @@
         })
     }
 
+
+    $: fields = (ready ? plot?._root?.table?.schema?.fields : []) as string[]
+
     // NOTE: internal props
-    $: extents = (ready ? plot?._root?.extent : emptyExtents) as Extents
+    $: extents = (ready ? plot?._root?.extent : {}) as Extents
     $: xExtent = extents?.x || null
     $: yExtent = extents?.y || null
     $: zExtent = extents?.z || null
 
-    $: fields = (ready ? plot?._root?.table?.schema?.fields : []) as string[]
+    $: dispatch('ready', {ready} as DeepScatterReadyEvent)
+    $: dispatch('fields', {fields} as DeepScatterFieldsEvent)
+    $: dispatch('extents', {extents} as DeepScatterExtentEvent)
 
 
-    // NOTE: I no longer need this since options is already reactive
-    // NOTE: reactive updates
-    // $: if (ready) {
-    //     // console.debug('Options changed going to debouncePlotAPI')
-    //     debouncePlotAPI({...options,})
-    // }
+    // NOTE: have to asyncrously import deepscatter to handle SSR
+    let Deepscatter = null
+    type DeepScatter = typeof Deepscatter    
+    // import Deepscatter from 'deepscatter';
+    // import Deepscatter from 'deepscatter?client';
+    onMount(async () => {        
+        const Scatterplot = await import('deepscatter');
+        doDebug({status: 'Deepscatter imported'}, Scatterplot)
+        Deepscatter = Scatterplot.default;
+    });
 
 
 
-    // NOTE: single update better than many updates
-    // $: if (ready) {
-    //     console.log('backgroundColor change')
-    //     debounce({duration, background_color: backgroundColor})
-    // }
 
-    // $: if (ready) {
-    //     console.log('backgroundColor change')
-    //     debounce({duration, background_color: backgroundColor})
-    // }
 
-    // NOTE: encoding API based roughly on Vega Lite: 
-    //       https://vega.github.io/vega-lite/docs/encoding.html
-    $: defaultColors = {
-        field: cField,
-        range: cRange,
-        domain: [0, .001],
-    }
-    $: encoding = {
-        x: {
-            field: xField,
-            transform: xTransform
-        },
-        y: {
-            field: yField,
-            transform: yTransform
-        },
-        color: (cSpec === null) ? defaultColors : cSpec
-    }
-
-    // NOTE: default options
-    $: options = {
-        alpha,
-        source_url: url,
-        max_points: nPoints,
-        point_size: pointSize,
-        zoom_balance: zoomBalance,
-        background_color: backgroundColor,
-        encoding,
-        duration
-    }  
-
-    type Points = Record<string, number | string>[]
-    interface DeepScatterSampleEvent {
-        points: Points
-    }
+    /**
+     * NOTE: these are exposing the deepscatter API in case someone maybe wants to use it's sampling
+     * capabilities in "headless" mode (read data and sample, but not use its plotting?)
+     */
     export const samplePoints = (n:number) => {
         if (ready && plot) {
             let points = plot?.sample(n)
@@ -241,13 +257,12 @@
     }
 
     export const addIdentifierColumn = async (field:string, datamap:Record<string, number>[], reference:string) => {
-        if (debug) console.debug('addIdentifierColumn', {field, datamap, reference, plot, ready})
-        if (plot) {
+        doDebug({status: 'addIdentifierColumn', everything:false}, {field, datamap, reference, plot, ready})
+        if (plot && !pause) {
             // await plot?.add_identifier_column(field, datamap, reference)
             plot?.add_identifier_column(field, datamap, reference)
         }
     }
-
 
     const destroyWebGLInstances = () => {
         // Get all canvas elements
@@ -264,13 +279,111 @@
             // Check if a WebGL context exists for the canvas
             if (context) {                
                 // Call the loseContext method to release WebGL resources
-                if (debug) console.debug(`Trying to lose WebGL context for canvas ${i}`)
+                doDebug({status: `Trying to lose WebGL context for canvas ${i}`, everything:false})                
                 context.getExtension('WEBGL_lose_context').loseContext();
             }
         }
     };
 
+
+    // For trying to autofit the plot to the container    
+    export let autofit = true
+    // initialize autofitWidth and autofitHeight to be user specified width / height
+    // NOTE: these are bound to client width and height of the container, so they will
+    // always be distinct from width and height
+    let autofitWidth = width
+    let autofitHeight = height
+    $: w = autofit ? autofitWidth : width
+    $: h = autofit ? autofitHeight : height
+
+
+    // For trying to debounce the redrawing
+    export let delayPlotAPI:number = 500;
+    export let delayDestory:number = 250;
+    let plotting = false
+    let clearing = false
+
+    let plottingTimer:ReturnType<typeof setTimeout>;
+    let clearingTimer:ReturnType<typeof setTimeout>;
+
+    const debouncePlotAPI = (opts:any) => {
+        // already plotting, so we will also throttle and stop new calls
+        if (plotting) return
+        doDebug({status: 'debouncePlotAPI', everything:false}, {plotting, ready})
+        /**
+         * NOTE: this can result in the following warning: 
+         * There are too many active WebGL contexts on this page, 
+         * the oldest context will be lost.
+        */        
+        
+        // reset timer
+	    clearTimeout(plottingTimer);
+
+        // NOTE: pause updates by preventing call to plotAPI
+        if (pause) return
+        plotting = true
+
+        plottingTimer = setTimeout(async () => {            
+            plot.plotAPI({...opts})
+                .then(() => ready = true)
+                .then(() => {
+                    // NOTE: this is were I was adding new identifier columns    
+                })
+                .then(() => {
+                    // NOTE: since we are in debug mode we will add plot to the window
+                    window.plot = debug ? plot : null
+                })
+                .then(() => plotting = false)
+                // .then(() => plot._zoom.initialize_zoom())
+                // .then( () => destroyWebGLInstances())          
+		}, delayPlotAPI);
+	}
+
+    // NOTE: this is temporary. We are exposing this for 
+    // the button panel
+    export const doDestory = () => debounceDestroy()
+    export const doDraw = () => {
+        // Check if we have client and the module
+        if (browser && Deepscatter !== null) {            
+            debounceDestroy().then(() => {
+                // NOTE: tis gets called a bunch since it is reactive on plot and 
+                // plot.destory() changes it
+                plot = new Deepscatter(`#${htmlID}`, w, h)
+                debouncePlotAPI({...options})
+            })
+        }    
+    }
+
+    const destroy = async () => {
+        if (plot !== null) {
+            plot.destroy()
+            ready = false;
+            doDebug({status: 'destroyed plot!', everything:false}, {ready, plot})
+        }
+        return Promise.resolve();
+    }
+
+    const debounceDestroy = async () => {
+        // already clearing, so we will also throttle and stop new calls
+        if (clearing) return
+        clearTimeout(clearingTimer);
+        clearing = true
+        return new Promise((resolve) => {
+            clearingTimer = setTimeout(async () => {
+                doDebug({status: 'debounceDestroy timeout', everything:false})
+                destroy().then(() => {
+                    resolve()
+                    clearing = false
+                    destroyWebGLInstances()
+                })  
+            }, delayDestory);
+        });
+    };
+
+
 </script>
+
+
 <div 
     class="flex justify-content-center {$$props.class}"
     bind:clientWidth={autofitWidth} 

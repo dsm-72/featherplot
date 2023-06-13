@@ -12,7 +12,7 @@
     export let deactive = 'off'
     export let active = 'on'
     
-    let state = false
+    export let state = false
 
     const click = () => {
         state = !state
@@ -29,20 +29,24 @@
         ? (state ? icon : toggleIcon)
         : icon
 
+    
+    const cls = `text-primary font-semibold
+    p-1 border rounded-lg
+    bg-transparent  border-secondary
+    hover:text-white hover:bg-secondary`
+    
+    $: hasCls = !([undefined, null, ''].includes($$props.class))
 </script>
 
 <button 
-    class="
-    text-primary font-semibold
-    p-1 border rounded-lg
-    bg-transparent  border-secondary
-    hover:text-white hover:bg-secondary 
-    "
-
     on:click 
     on:click={click}
     {...$$restProps}
+    class="{cls}"
 >
-
-    <svelte:component this={comp}/>
+    <svelte:component 
+        this={comp}
+        {...$$restProps}
+        class="{hasCls ?  $$props.class : ''}"
+    />
 </button>
