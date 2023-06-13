@@ -1,7 +1,7 @@
 /** @type {import('./$types').PageLoad} */
 
-import {DEMO_META_FILE, DEMO_LABELS_FILE} from '$lib/constants'
-import {parseColumnCSV, LoadGlobsOneByOne } from '$lib/utils'
+import {DEMO_META_FILE, DEMO_LABELS_FILE} from '../lib/constants'
+import {parseColumnCSV, LoadGlobsOneByOne } from '../lib/utils'
 
 import yaml from "js-yaml";
 

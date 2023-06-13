@@ -49,6 +49,7 @@
 	"type": "module",
 	"dependencies": {
 		"deepscatter": "^2.11.1",
+		"esm-env": "^1.0.0",
 		"js-yaml": "^4.1.0"
 	}
 }

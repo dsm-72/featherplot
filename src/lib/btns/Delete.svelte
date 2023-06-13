@@ -1,6 +1,6 @@
 <script lang="ts">
-    import Ibtn from '$lib/btns/ibtn.svelte'
-    import Delete from '$lib/icons/delete.svelte'
+    import Ibtn from '../btns/ibtn.svelte'
+    import Delete from '../icons/delete.svelte'
     export let value = false
 </script>
 

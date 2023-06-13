@@ -1,7 +1,8 @@
 <script lang="ts">
     // type datamap = Record<string, number>[];
     import { onMount } from 'svelte';
-    import { browser } from '$app/environment';
+    import { BROWSER } from 'esm-env';
+    const browser = BROWSER;
 
     import { createEventDispatcher } from 'svelte';
     const dispatch = createEventDispatcher();
@@ -38,8 +39,8 @@
     
 
 
-    import type {ZoomAlign, Transform, constant} from '$lib/NomicAi/types'
-    import { defaultAPICall} from '$lib/NomicAi/constants'
+    import type {ZoomAlign, Transform, constant} from './types'
+    import { defaultAPICall} from './constants'
     
     /*----------------------------------------------------------------------------------
     **
@@ -113,7 +114,7 @@
     Conditional,
     ConditionalChannel,
     LambdaChannel,
-    FunctionalChannel,} from '$lib/NomicAi/types'
+    FunctionalChannel,} from './types'
 
     import type {RootChannel, ColorChannel} from 'deepscatter/global.d.ts'
 
@@ -196,7 +197,7 @@
         Points, Extent, Extents, DeepScatterReadyEvent, 
         DeepScatterExtentEvent, DeepScatterSampleEvent,
         DeepScatterFieldsEvent, DeepScatterSchemaEvent
-    } from '$lib/NomicAi/types'
+    } from './types'
 
     // let plot: DeepScatter | null = null
     export let plot: any | null = null

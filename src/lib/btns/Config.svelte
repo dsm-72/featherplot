@@ -1,6 +1,6 @@
 <script lang="ts">
-    import Ibtn from '$lib/btns/ibtn.svelte'
-    import Cog from '$lib/icons/cog.svelte'
+    import Ibtn from '../btns/ibtn.svelte'
+    import Cog from '../icons/cog.svelte'
     export let value = false
 </script>
 

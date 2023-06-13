@@ -1,6 +1,6 @@
 <script lang="ts">
-    import Ibtn from '$lib/btns/ibtn.svelte'
-    import Code from '$lib/icons/code-bracket.svelte'
+    import Ibtn from '../btns/ibtn.svelte'
+    import Code from '../icons/code-bracket.svelte'
     export let value = false
 </script>
 

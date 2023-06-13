@@ -1,6 +1,6 @@
 <script lang="ts">
-    import Ibtn from '$lib/btns/ibtn.svelte'
-    import Bug from '$lib/icons/bug.svelte'
+    import Ibtn from '../btns/ibtn.svelte'
+    import Bug from '../icons/bug.svelte'
     export let value = false
     $: hasCls = !([undefined, null, ''].includes($$props.class))
 </script>

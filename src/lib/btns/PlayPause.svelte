@@ -1,7 +1,7 @@
 <script lang="ts">
-    import Ibtn from '$lib/btns/ibtn.svelte'
-    import Play from '$lib/icons/play.svelte'
-    import Pause from '$lib/icons/pause.svelte'
+    import Ibtn from '../btns/ibtn.svelte'
+    import Play from '../icons/play.svelte'
+    import Pause from '../icons/pause.svelte'
     export let value = false
 </script>
 

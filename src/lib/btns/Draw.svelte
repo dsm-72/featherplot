@@ -1,6 +1,6 @@
 <script lang="ts">
-    import Ibtn from '$lib/btns/ibtn.svelte'
-    import Draw from '$lib/icons/pencil-square.svelte'
+    import Ibtn from '../btns/ibtn.svelte'
+    import Draw from '../icons/pencil-square.svelte'
     export let value = false
 </script>
 
