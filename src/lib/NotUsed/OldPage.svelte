@@ -1,6 +1,6 @@
 <script lang="ts">
-    import ZoomCall from '$lib/FeatherPlot/ZoomCall.svelte'
-    import RootChannel from '$lib/FeatherPlot/RootChannel.svelte'
+    import ZoomCall from '$lib/NotUsed/FeatherPlot/ZoomCall.svelte'
+    import RootChannel from '$lib/NotUsed/FeatherPlot/RootChannel.svelte'
     
     import type {
         Range, Domain, Transform, ColumnMetadata, ColumnsMetadata, 

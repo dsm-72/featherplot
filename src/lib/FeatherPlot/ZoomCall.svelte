@@ -2,16 +2,23 @@
   import { onMount, createEventDispatcher } from 'svelte';
   
   import { plotArgs } from './PlotArgsStore.ts';
-  import type {ZoomBox} from './PlotArgsStore.ts'
-
-  import Slider from '@smui/slider';
+  import type {BBox, ZoomCall} from './types.ts'
   import RangeSlider from './RangeSlider.svelte'
-  import Button, { Label, Icon } from '@smui/button';
-  import MenuSurface from '@smui/menu-surface'
-  
+  import {defaultBBox} from './defaults.ts'
+
   const dispatch = createEventDispatcher();
 
-  let {x: [lowerX, upperX], y: [lowerY, upperY]} = $plotArgs.zoom_call.bbox
+  
+  let {x: [lowerX, upperX], y: [lowerY, upperY]} = defaultBBox
+
+  onMount(() => {
+    if ($plotArgs?.zoom?.bbox) {
+      lowerX = $plotArgs.zoom.bbox.x[0]
+      upperX = $plotArgs.zoom.bbox.x[1]
+      lowerY = $plotArgs.zoom.bbox.y[0]
+      upperY = $plotArgs.zoom.bbox.y[1]
+    }
+  })
 
   export let minX = -2;
   export let maxX = 2;
@@ -21,43 +28,49 @@
   export let step = 0.01
 
   $: bbox = { x: [lowerX, upperX], y: [lowerY, upperY] };
-
-
+  $: zoom = {bbox} as ZoomCall
   // Function to handle slider changes
   const handleSliderChange = () => {
-    plotArgs.updateZoomCall(bbox as ZoomBox)
+    plotArgs.updateZoomCall(zoom)
     dispatch('change', { bbox });
   };
 
-  let surface: MenuSurface;
+  export let id = 'zoom-box-sliders'
 
-  let open:boolean = false;
-  const toggleSurface = () => {
-    // open = !open
-    open = true;
-    surface.setOpen(open)
-  }
 </script>
-  <Button on:click={toggleSurface}>
-    <Icon class="material-icons">pageview</Icon>
-    <Label>Zoom</Label>
-  </Button>
 
-  <MenuSurface bind:this={surface} anchorCorner="BOTTOM_LEFT" class="w-full px-2">
-      <RangeSlider
-        label="ZoomBox x"        
-        on:change={handleSliderChange}        
-        bind:lower={lowerX}
-        bind:upper={upperX}
-        {step} min={minX} max={maxX}
-      />
-      <RangeSlider
-        label="ZoomBox y"        
-        on:change={handleSliderChange}
-        bind:lower={lowerY}
-        bind:upper={upperY}
-        {step} min={minY} max={maxY}
-        
-        
-      />      
-  </MenuSurface>
+<div class="col-span-12 justify-self-start select-none point-event-none">
+  <label  for={id}  class="text-gray-700 text-sm font-bold">
+    Zoom Box
+  </label>
+</div>
+
+<div {id} class="select-none point-event-none">
+  <div class="inline-flex w-full place-items-center justify-center place-content-center align-middle gap-2">
+    <div class="inline-flex align-middle pl-4">
+      x:
+    </div>
+    <RangeSlider
+      class="w-full"
+      label={null}
+      on:change={handleSliderChange}        
+      bind:lower={lowerX}
+      bind:upper={upperX}
+      {step} min={minX} max={maxX}
+    />
+  </div>
+  
+  <div class="inline-flex w-full place-items-center justify-center place-content-center align-middle gap-2">
+    <div class="inline-flex align-middle pl-4">
+      y:
+    </div>
+    <RangeSlider
+      class="w-full"
+      label={null}
+      on:change={handleSliderChange}
+      bind:lower={lowerY}
+      bind:upper={upperY}
+      {step} min={minY} max={maxY}
+    />
+  </div>
+</div>

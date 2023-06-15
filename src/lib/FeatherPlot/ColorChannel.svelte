@@ -9,7 +9,7 @@
 
     const dispatch = createEventDispatcher();
 
-    export let name: EncodingKey = 'x'
+    export let name: EncodingKey = 'color'
     export let label:string = 'Axis'
     export let columns: ColumnsMetadata
     

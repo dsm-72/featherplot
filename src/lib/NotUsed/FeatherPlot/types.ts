@@ -26,31 +26,9 @@ export type Metadata = {
 }
 
 
-export type PlotArgs = {    
-    zoom?: ZoomCall;
-    zoom_align?: ZoomAlign;
-    /** The magnification coefficient for a zooming item */
-    zoom_balance?: number;
-
+export type PlotAPIArgs = {
+    zoom_call: ZoomCall;
     encoding: EncodingChannels;
-
-    /** The length of time to take for the transition to this state. */
-    duration?: number;
-
-    /** The base point size for aes is modified */
-    point_size?: number;
-
-    /** The maximum number of points to load */
-    max_points?: number;
-
-    /** Overall screen saturation target at average point density */
-    alpha?: number;
-
-    /** A function defind as a string that takes implied argument 'datum' */
-    click_function?: string;
-
-    // labels?: Labelcall;
-    // background_options?: BackgroundOptions;  
 };
 
 // NOTE: this is never defined in the codebase, but is used in the type definitions.
@@ -58,13 +36,11 @@ export type ZoomAlign = undefined | 'right' | 'left' | 'top' | 'bottom' | 'cente
 
 // URL: https://github.com/nomic-ai/deepscatter/blob/main/src/global.d.ts#LL217C2-L222C5
 export type ZoomCall = {
-    bbox: BBox
+    bbox: {
+        x: [number, number];
+        y: [number, number];
+    };
 };
-
-export type BBox = {
-    x: [number, number];
-    y: [number, number];    
-}
   
 
 export type constant = number | string | boolean | undefined 

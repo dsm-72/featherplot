@@ -1,5 +1,5 @@
 <script lang="ts">
-    import Slider from '$lib/Forms/MinMaxSlider.svelte'
+    import Slider from '@smui/slider';
     export let id: string = 'range-slider'
     export let label:string = 'Range Slider'
 
@@ -20,8 +20,9 @@
           {lower}
       </div>
       <Slider
-        id="{id}"             
-        bind:lower bind:upper
+        id="{id}"
+        range        
+        bind:start={lower} bind:end={upper}
         {min} {max} {step}
         on:change
         on:click

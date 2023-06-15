@@ -17,12 +17,17 @@
     export let lower = -1;
     export let upper = 1;
 
+    export let minLabel: boolean = true
+    export let maxLabel: boolean = true
+    export let minMaxLabels: boolean = true
+
     export let minRange = 0
 
     export let color:string = 'bg-sky-500';
     
     export let tooltip:boolean= false;
     export let tooltipAlways:boolean= false;
+    export let tooltipNever:boolean=false;
 
     let tooltipMin = false;
     let tooltipMax = false;
@@ -149,7 +154,7 @@
     on:touchend={mouseUp} 
 />
 
-<div class={$$props.class}>
+<div class="{$$props.class} ">
     <div bind:clientWidth={width} class='py-1 relative min-w-full select-none'  bind:this={container}>
         <div  class='h-1 -mt-px bg-gray-300 rounded-full'>
             <div class='absolute h-1 rounded-full {color} w-0 pointer-events-none' bind:this={progressBar}/>
@@ -168,7 +173,7 @@
                 on:mouseleave={() => (tooltipMin = false)}
                 use:floatingRefMin
             >
-                {#if tooltipMin || tooltipAlways}
+                {#if (tooltipMin || tooltipAlways)  && !tooltipNever}
                 <div class='relative -mt-2 w-1 pointer-events-none' use:floatingContentMin>
                     {Math.round(lower * 100) / 100}
                 </div>
@@ -189,21 +194,25 @@
                 on:mouseleave={() => (tooltipMax = false)}
                 use:floatingRefMax
             >
-                {#if tooltipMax || tooltipAlways}
+                {#if (tooltipMax || tooltipAlways) && !tooltipNever}
                 <div class='relative -mt-2 w-1 pointer-events-none' use:floatingContentMax>
                     {Math.round(upper * 100) / 100}
                 </div>
                 {/if}
             </div>
 
-
-            <div class='absolute text-gray-800 -ml-1 bottom-0 left-0 -mb-6'>
-                {min}
-            </div>
-
-            <div class='absolute text-gray-800 -mr-1 bottom-0 right-0 -mb-6'>
-                {max}
-            </div>
+            {#if minMaxLabels}
+                {#if minLabel}
+                <div class='absolute text-gray-800 -ml-1 bottom-0 left-0 -mb-6'>
+                    {min}
+                </div>
+                {/if}
+                {#if maxLabel}
+                <div class='absolute text-gray-800 -mr-1 bottom-0 right-0 -mb-6'>
+                    {max}
+                </div>
+                {/if}
+            {/if}
 
         </div>
     </div>

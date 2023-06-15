@@ -2,35 +2,47 @@ import { writable } from 'svelte/store';
 
 // Define the type for the store state
 import type {
-  PlotArgs, ZoomCall, 
+  PlotAPIArgs, ZoomCall, 
   RootChannel, 
   Encoding, EncodingKey, 
   EncodingVal, EncodingChannels,
   // EncodingChannel
 } from './types.ts';
 
-import {defaultAPICall} from './defaults.ts'
 
-export const calcUpdateRootChannel = (state:PlotArgs, name:EncodingKey, channel?: EncodingVal) => {
+// Create the initial state
+const initialState: PlotAPIArgs = {
+  zoom_call: {
+    bbox: {
+      x: [0.00, 0.00],
+      y: [0.00, 0.00],
+    },
+  },
+  encoding: {
+
+  }
+};
+
+// Create the store
+export const plotAPIArgs = writable<PlotAPIArgs>(initialState);
+
+
+export const calcUpdateRootChannel = (state:PlotAPIArgs, name:EncodingKey, channel?: EncodingVal) => {
   let encoding = {...state.encoding}
   encoding[name] = channel
   return encoding
 }
 
 const createPlotAPI = () => {
-  const { subscribe, set, update } = writable<PlotArgs>(defaultAPICall);
+  const { subscribe, set, update } = writable<PlotAPIArgs>(initialState);
 
   let state = {
     subscribe,
     set,
     update,
 
-    updateMaxPoints: (value:number) => {
-      update((state) => ({ ...state, max_points: value }));
-    },
-
-    updateZoomCall: (zoom: ZoomCall) => {
-      update((state) => ({ ...state, zoom }));
+    updateZoomCall: (zoom_call: ZoomCall) => {
+      update((state) => ({ ...state, zoom_call }));
     },
 
     calcUpdateRootChannel,
