@@ -7,18 +7,18 @@ export default {
   plugins: [
     require('@tailwindcss/typography'),
     require('@tailwindcss/forms'),
-    require("daisyui")
+    // require("daisyui")
   ],
-  daisyui: {
-    themes: true,
-    // themes: ['cupcake', 'aqua'],
-    lightTheme: 'light',
-    darkTheme: 'winter', // name of one of the included themes for dark mode
-    base: true,
-    styled: true,
-    utils: true,
-    rtl: false,     
-    logs: true,
-  },
+  // daisyui: {
+  //   themes: true,
+  //   // themes: ['cupcake', 'aqua'],
+  //   lightTheme: 'light',
+  //   darkTheme: 'winter', // name of one of the included themes for dark mode
+  //   base: true,
+  //   styled: true,
+  //   utils: true,
+  //   rtl: false,     
+  //   logs: true,
+  // },
 }
 

@@ -1,60 +1,63 @@
 <script lang="ts">
   import { onMount, createEventDispatcher } from 'svelte';
-  import { plotAPIArgs } from './plotAPIStore.ts';
+  
+  import { plotArgs } from './PlotArgsStore.ts';
+  import type {ZoomBox} from './PlotArgsStore.ts'
+
   import Slider from '@smui/slider';
-
-
+  import RangeSlider from './RangeSlider.svelte'
+  import Button, { Label, Icon } from '@smui/button';
+  import MenuSurface from '@smui/menu-surface'
+  
   const dispatch = createEventDispatcher();
 
-  let minX = 0;
-  let maxX = 100;
-  let minY = 0;
-  let maxY = 100;
+  let {x: [lowerX, upperX], y: [lowerY, upperY]} = $plotArgs.zoom_call.bbox
 
-  let valX = [minX, maxX]
-  let valY = [minY, maxY]
+  export let minX = -2;
+  export let maxX = 2;
+  export let minY = -2;
+  export let maxY = 2;
 
-  $: bbox = { x: [minX, maxX], y: [minY, maxY] }
+  export let step = 0.01
 
-  // Subscribe to the store
-  plotAPIArgs.subscribe((value) => {
-    [minX, maxX] = value.zoom_call.bbox.x;
-    [minY, maxY] = value.zoom_call.bbox.y;
-  });
+  $: bbox = { x: [lowerX, upperX], y: [lowerY, upperY] };
+
 
   // Function to handle slider changes
-  const handleSliderChange = (axis, values) => {
-    plotAPIArgs.update((value) => {
-      value.zoom_call.bbox[axis] = values;
-      return value;
-    });
+  const handleSliderChange = () => {
+    plotArgs.updateZoomCall(bbox as ZoomBox)
     dispatch('change', { bbox });
   };
+
+  let surface: MenuSurface;
+
+  let open:boolean = false;
+  const toggleSurface = () => {
+    // open = !open
+    open = true;
+    surface.setOpen(open)
+  }
 </script>
+  <Button on:click={toggleSurface}>
+    <Icon class="material-icons">pageview</Icon>
+    <Label>Zoom</Label>
+  </Button>
 
-<div class="p-4 bg-white rounded shadow">
-  <div class="flex items-center justify-between">
-    <div class="w-1/2 pr-2">
-      <Slider
-        bind:start={valX[0]}
-        bind:end={valX[1]}
-        min={minX}
-        max={maxX}
-        on:change={() => handleSliderChange('x', [minX, maxX])}
+  <MenuSurface bind:this={surface} anchorCorner="BOTTOM_LEFT" class="w-full px-2">
+      <RangeSlider
+        label="ZoomBox x"        
+        on:change={handleSliderChange}        
+        bind:lower={lowerX}
+        bind:upper={upperX}
+        {step} min={minX} max={maxX}
       />
-    </div>
-    <div class="w-1/2 pl-2">
-      <Slider
-        bind:start={valY[0]}
-        bind:end={valY[1]}
-        min={minY}
-        max={maxY}
-        on:change={() => handleSliderChange('y', [minY, maxY])}
-      />
-    </div>
-  </div>
-</div>
-
-<style>
-  /* Add your Tailwind CSS styles here */
-</style>
+      <RangeSlider
+        label="ZoomBox y"        
+        on:change={handleSliderChange}
+        bind:lower={lowerY}
+        bind:upper={upperY}
+        {step} min={minY} max={maxY}
+        
+        
+      />      
+  </MenuSurface>
