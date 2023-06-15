@@ -10,7 +10,6 @@ import type {
 
 import yaml from "js-yaml";
 
-
 export async function load({fetch}) {
 
     const meta_raw = await fetch(META_FILE).then(r => r.text())
