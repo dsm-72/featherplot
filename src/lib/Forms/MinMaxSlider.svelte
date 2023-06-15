@@ -11,27 +11,32 @@
 
     const dispatch = createEventDispatcher();
 
-    export let min:number = 0;
-    export let max:number = 100;
-    export let value:[number, number] = [25, 64];
+    export let min:number = -2;
+    export let max:number = 2;
+
+    export let lower = -1;
+    export let upper = 1;
+
+    export let minRange = 0
 
     export let color:string = 'bg-sky-500';
     
     export let tooltip:boolean= false;
+    export let tooltipAlways:boolean= false;
 
     let tooltipMin = false;
     let tooltipMax = false;
     
+
+    let width: number;
     let pointer: HTMLElement | null = null;
     let container: HTMLElement
     let pointerMin: HTMLElement
     let pointerMax: HTMLElement
     let progressBar: HTMLElement
-    // let nodeOffsetLeft:number
     $: nodeOffsetLeft = container?.offsetLeft
+    $: activePointer = pointer === pointerMin ? 0 : 1
 
-    
-  
     function isMouseEvent(event: MouseEvent | TouchEvent): event is MouseEvent {
         return (event instanceof MouseEvent)       
     }
@@ -44,86 +49,83 @@
         return 0
     }
 
-    function updateValue(val:number) {
-        let which = pointer === pointerMin ? 0 : 1
-        let other = which === 0 ? 1 : 0
-        if (which === 0 && val > value[1]) {which = 1; return}
-        if (which === 1 && val < value[0]) {which = 0; return}
-        
-        tooltipMin = which === 0
-        tooltipMax = which === 1
-        
-        value[which] = val
-        dispatch('change', value)
+    const isNewMaxValLessThanLower = (val:number) => {
+        // guard for max < min
+        return (activePointer === 1 && val - minRange < lower)
     }
-
+    const isNewMinValGreaterThanUpper = (val:number) => {        
+        // guard for min > max
+        return (activePointer === 0 && val + minRange > upper) 
+    }
+    
     function movePointer(event:MouseEvent | TouchEvent) {        
         if (pointer === null) return false;
-        let clientX = getInteractiveEventWidth(event)
-
+        let clientX = getInteractiveEventWidth(event)        
         // calculate percentage
         let diff = clientX - nodeOffsetLeft; 
-        let prec = (diff * 100) / width;     
-
-        const val = calcPerc(prec)
-        const adj = val + min
-        updateValue(adj);
+        let prec = (diff / width) * 100;     
+        const val = percToVal(prec) 
+        updateValue(val);
     }
-    
-    
-  
-    // function setOffsetLeft(node:HTMLElement) {
-    //   nodeOffsetLeft = node.offsetLeft;
-    // }
-    // function setPointerMin(node:HTMLElement) {
-    //   pointerMin = node;
-    // }
-    // function setRightPointer(node:HTMLElement) {
-    //   pointerMax = node;
-    // }
-    // function setProgressBar(node:HTMLElement) {
-    //   progressBar = node;
-    // }
-  
+
+    function updateValue(val:number) {
+        if (isNewMaxValLessThanLower(val)) return
+        if (isNewMinValGreaterThanUpper(val)) return        
+        switch (activePointer) {
+            case 0:
+                updateMin(val)
+                break;
+            case 1:
+                updateMax(val)
+                break;
+            default:
+                break;
+        }
+    }
+
+    const updateMin = (val:number) => {
+        tooltipMin = true
+        lower = forceLims(val)
+        dispatch('change', [lower, upper])
+    }
+    const updateMax = (val:number) => {
+        tooltipMax = true
+        upper = forceLims(val)        
+        dispatch('change', [lower, upper])
+    }
+
+
+    const squashMax = (val:number) => Math.min(max, val)
+    const upliftMin = (val:number) => Math.max(min, val)
+    const forceLims = (val:number) => squashMax(upliftMin(val))    
+    const valToPerc = (val:number) => ((val - min) / (max - min)) * 100;
+    const percToVal = (perc:number) => ((perc / 100) * (max - min)) + min;
+
+
+    $: perMin = valToPerc(lower)// - valToPerc(min)
+    $: perMax = valToPerc(upper)// - valToPerc(min)
+    $: perDif = perMax - perMin
+    $: if (pointerMin) pointerMin.style.left = `${perMin}%`
+    $: if (pointerMax) pointerMax.style.left = `${perMax}%`
+
+    $: if (progressBar) {
+        progressBar.style.width = `${perDif}%`;
+        progressBar.style.left = `${perMin}%`;
+    }
+
+    $: if (tooltip == true) {
+        tooltipMin = true;
+        tooltipMax = true;
+    }
+        
     function mouseUp() {
       pointer = null;
       tooltipMin = false
       tooltipMax = false;
     }
   
-    function updatePointerStyle(pointer:HTMLElement, val:number) {        
-        let per = calcAdjustedPerc(forceLims(val))
-        pointer.style.left = `${per}%`
-        return per
-    }
-
-    const squashMax = (val:number) => Math.min(max, val)
-    const upliftMin = (val:number) => Math.max(min, val)
-    const forceLims = (perc:number) => squashMax(upliftMin(perc))
-    const calcPerc = (perc:number) => (forceLims(perc) * (max - min)) / 100
-    const calcAdjustedPerc = (val:number) => ((val - min) * 100) / (max - min)
-
-    $: if (progressBar && pointerMin) {
-      if (Array.isArray(value)) {
-        value[0] = forceLims(value[0])
-        value[1] = forceLims(value[1])
-        let perMin = updatePointerStyle(pointerMin, value[0])
-        let perMax = updatePointerStyle(pointerMax, value[1])
-        progressBar.style.width = `${perMax - perMin}%`;
-        progressBar.style.left = `${perMin}%`;
-      }
-    }
-  
-    $: if (tooltip == true) {
-        tooltipMin = true;
-        tooltipMax = true;
-    }
-  
-    let width: number;
-    
     import { offset, flip, shift } from "svelte-floating-ui/dom";
     import { createFloatingActions } from "svelte-floating-ui";
-
     const [ floatingRefMin, floatingContentMin ] = createFloatingActions({
         strategy: "absolute",
         placement: "top",
@@ -131,7 +133,6 @@
             // offset(), flip(), shift(),
         ]
     });
-
     const [ floatingRefMax, floatingContentMax ] = createFloatingActions({
         strategy: "absolute",
         placement: "top",
@@ -148,11 +149,9 @@
     on:touchend={mouseUp} 
 />
 
-
 <div class={$$props.class}>
-    <div class='py-1 relative min-w-full select-none' bind:this={container}>
-        <div bind:clientWidth={width} class='h-1 -mt-px bg-gray-300 rounded-full'>
-            
+    <div bind:clientWidth={width} class='py-1 relative min-w-full select-none'  bind:this={container}>
+        <div  class='h-1 -mt-px bg-gray-300 rounded-full'>
             <div class='absolute h-1 rounded-full {color} w-0 pointer-events-none' bind:this={progressBar}/>
 
             <div
@@ -169,9 +168,9 @@
                 on:mouseleave={() => (tooltipMin = false)}
                 use:floatingRefMin
             >
-                {#if tooltipMin}
+                {#if tooltipMin || tooltipAlways}
                 <div class='relative -mt-2 w-1 pointer-events-none' use:floatingContentMin>
-                    {value[0]}                
+                    {Math.round(lower * 100) / 100}
                 </div>
                 {/if}
             </div>
@@ -190,9 +189,9 @@
                 on:mouseleave={() => (tooltipMax = false)}
                 use:floatingRefMax
             >
-                {#if tooltipMax}
+                {#if tooltipMax || tooltipAlways}
                 <div class='relative -mt-2 w-1 pointer-events-none' use:floatingContentMax>
-                    {value[1]}
+                    {Math.round(upper * 100) / 100}
                 </div>
                 {/if}
             </div>
@@ -209,3 +208,4 @@
         </div>
     </div>
 </div>
+

@@ -1,5 +1,5 @@
 <script lang="ts">
-    import Slider from '$lib/Forms/Slider.svelte'
+    import Slider from '$lib/Forms/MinMaxSlider.svelte'
 </script>
 
 <div class="grid grid-cols-4 h-screen place-content-center align-center">
