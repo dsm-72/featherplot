@@ -68,6 +68,7 @@
     // Function to handle changes
     const handleChange = () => {    
         plotArgs.updateEncodingKey(name, channel)
+        // updateEncodingColor
         dispatch('change', { channel });
     };
 

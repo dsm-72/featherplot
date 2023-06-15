@@ -49,8 +49,8 @@ export type PlotArgs = {
     /** A function defind as a string that takes implied argument 'datum' */
     click_function?: string;
 
-    // labels?: Labelcall;
-    // background_options?: BackgroundOptions;  
+    labels?: Labelcall;
+    background_options?: BackgroundOptions;  
 };
 
 // NOTE: this is never defined in the codebase, but is used in the type definitions.
@@ -110,7 +110,7 @@ export type FunctionalChannel = LambdaChannel | ConditionalChannel;
 // URL: https://github.com/nomic-ai/deepscatter/blob/main/src/global.d.ts#LL71C2-L71C58
 export type Transform = 'log' | 'sqrt' | 'linear' | 'literal';
 
-export interface BasicChannel {
+export interface BasicChannelg<T extends object>  {
     field: string;
     /**
      * A transformation to apply on the field.
@@ -196,7 +196,7 @@ export type EncodingKey = 'x' | 'y' | 'color' | 'size' | 'shape'
     | 'filter' | 'filter2' | 'jitter_radius' | 'jitter_speed' 
     | 'x0' | 'y0' | 'position' | 'position0' | 'foreground';
     
-export type EncodingVal = RootChannel | ColorChannel |FunctionalChannel | JitterChannel | string | null | undefined;
+export type EncodingVal = RootChannel | ColorChannel | FunctionalChannel | JitterChannel | string | null | undefined;
 
 export type Encoding = {
     x?: RootChannel;
@@ -217,4 +217,108 @@ export type Encoding = {
 
 export type EncodingChannels = Encoding | {
     [K in EncodingKey]?: EncodingVal;
-}// & Encoding
+}
+
+export function isEncodingValueString(channel:EncodingVal): channel is string {
+    return (channel instanceof String)
+}
+export function isEncodingValueNull(channel:EncodingVal): channel is null  {
+    return channel === null
+}
+export function isEncodingValueUndefined(channel:EncodingVal): channel is undefined  {
+    return channel === undefined
+}
+export function isEncodingValueEmpty(channel:EncodingVal) {
+    return isEncodingValueNull(channel) || isEncodingValueUndefined(channel)
+}
+export function isEncodingValueChannels(channel:EncodingVal): channel is RootChannel | ColorChannel | FunctionalChannel | JitterChannel {
+    return (channel instanceof Object)
+}
+
+
+
+
+
+
+// URL: https://github.com/nomic-ai/deepscatter/blob/main/src/global.d.ts#L75
+export type BackgroundOptions = {
+    // The color of background points. Hex codes or HTML
+    // colors are accepted.
+    color?: string;
+
+    // A multiplier against the point's opacity otherwise.
+    // A single value describes the background; an array
+    // describes the foreground and background separately.
+    opacity?: number | [number, number];
+
+    // A multiplier against the point's size. Default 0.66.
+    // A single value describes the background; an array
+    // describes the foreground and background separately.
+
+    size?: number | [number, number];
+
+    // Whether the background points should respond on mouseover.
+    mouseover?: boolean;
+};
+
+
+// URL: https://github.com/nomic-ai/deepscatter/blob/main/src/global.d.ts#LL245-L267C55
+export type Label = {
+    x: number;
+    y: number;
+    text: string;
+};
+
+export type LabelOptions = {
+    useColorScale?: boolean; // Whether the colors of text should inherit from the active color scale.
+    margin?: number; // The number of pixels around each box. Default 30.
+    draggable_labels?: boolean; // Should labels be draggable in place?
+};
+
+export type URLLabels = {
+    url: string;
+    options: LabelOptions;
+    label_field: string;
+    size_field: string;
+};
+
+export type Labelset = {
+    labels: Label[];
+    name: string;
+    options?: LabelOptions;
+};
+
+export type Labelcall = Labelset | URLLabels | null;
+
+
+
+// NOTE: these are all custom / new (not derived like above)
+type Points = Record<string, number | string>[]
+
+type Extent = [number, number]
+
+type Extents = {
+    x?: Extent
+    y?: Extent
+    z?: Extent
+}
+
+export interface DeepScatterReadyEvent {
+    ready: boolean
+}
+
+interface DeepScatterExtentEvent {
+    extents: Extents
+}
+
+interface DeepScatterSampleEvent {
+    points: Points
+}
+
+interface DeepScatterFieldsEvent {
+    fields?: string[]
+}
+
+interface DeepScatterSchemaEvent {
+    schema?: any
+}

@@ -1,5 +1,4 @@
 <script lang="ts">
-    // import Slider from './MinMaxSlider.svelte'
     import Slider from './Slider.svelte'
     export let id: string = 'range-slider'
     export let label:string | null = 'Range Slider'

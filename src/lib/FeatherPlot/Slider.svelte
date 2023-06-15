@@ -5,7 +5,6 @@
     then lots of refractors to improve it.
     */
 
-    // import Tooltip from '@fouita/tooltip';
     import { onMount } from 'svelte/internal';
     import { createEventDispatcher } from 'svelte';
 

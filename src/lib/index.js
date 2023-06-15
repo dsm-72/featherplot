@@ -1,31 +1,18 @@
 // Reexport your entry components here
-import Bug from './btns/Bug.svelte';
-import Code from './btns/Code.svelte';
-import Config from './btns/Config.svelte';
-import Delete from './btns/Delete.svelte';
-import Draw from './btns/Draw.svelte';
-import PlayPause from './btns/PlayPause.svelte';
-export {Bug, Code, Config, Delete, Draw, PlayPause}
-
-import DeepScatter from './NomicAi/DeepScatter.svelte';
-export const FeatherPlot = DeepScatter
-
-import SidecarSelector from './SidecarSelector.svelte';
-import PointSlider from './PointSlider.svelte';
-import AxisSelector from './AxisSelector.svelte';
+import FeatherPlot from "./FeatherPlot/FeatherPlot.svelte";
+import ColorChannel from "./FeatherPlot/ColorChannel.svelte";
+import MaxPoints from "./FeatherPlot/MaxPoints.svelte";
+import RangeSlider from "./FeatherPlot/RangeSlider.svelte";
+import RootChannel from "./FeatherPlot/RootChannel.svelte";
+import Slider from "./FeatherPlot/Slider.svelte";
+import ZoomCall from "./FeatherPlot/ZoomCall.svelte";
 
 export {
-    SidecarSelector, PointSlider, AxisSelector
+    FeatherPlot,
+    ColorChannel,
+    MaxPoints,
+    RangeSlider,
+    RootChannel,
+    Slider,
+    ZoomCall,
 }
-
-import type {
-    DeepScatterReadyEvent, DeepScatterExtentEvent, DeepScatterSampleEvent,
-    DeepScatterFieldsEvent, DeepScatterSchemaEvent
-} from './NomicAi/types'
-
-export {
-    DeepScatterReadyEvent, DeepScatterExtentEvent, DeepScatterSampleEvent,
-    DeepScatterFieldsEvent, DeepScatterSchemaEvent
-}
-
-
