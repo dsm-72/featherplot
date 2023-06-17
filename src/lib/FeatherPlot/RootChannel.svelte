@@ -1,6 +1,6 @@
 <script lang="ts">
     import { onMount, createEventDispatcher } from 'svelte';
-    import { plotArgs } from './PlotArgsStore.ts';    
+    import { plotStore } from './PlotStore.ts';
 
     import type {
         Range, Domain, Transform, ColumnsMetadata, 
@@ -15,7 +15,7 @@
     
     $: selectActive = (Array.isArray(columns) && columns.length) as boolean
 
-    $: channelValues = $plotArgs.encoding?.[name]
+    $: channelValues = plotStore.getColumnAsEncoding(name)
    
     // let field:string = '';
     let field:string = channelValues?.field ? channelValues?.field : '';
@@ -67,12 +67,11 @@
     
     // Function to handle changes
     const handleChange = () => {    
-        plotArgs.updateEncodingKey(name, channel)
-        // updateEncodingX, updateEncodingY
+        // plotStore.setEncoding(name, channel);
         dispatch('change', { channel });
     };
 
-export let id = 'root-channel'
+    export let id = 'root-channel'
 </script>
 
 <div class="w-full {$$props.class}">
@@ -86,7 +85,9 @@ export let id = 'root-channel'
             <select class="select select-bordered min-w-full" on:change={handleChange}>
                 {#if columns}
                     {#each Object.keys(columns) as name (name)}
-                        <option value={name}>{columns[name].text}</option>
+                        <option value={name} selected>
+                            {(columns[name]?.human) ? columns[name]?.human : name}
+                        </option>
                     {/each}
                 {/if}
             </select>

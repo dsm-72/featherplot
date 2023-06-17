@@ -21,7 +21,8 @@
     export let upper = 1;
 
     $: value = range ? [lower, upper] : lower
-
+    // let value = range ? [lower, upper] : lower
+    
     export let minLabel: boolean = true
     export let maxLabel: boolean = true
     export let minMaxLabels: boolean = true
@@ -114,14 +115,9 @@
         upper = forceLims(val)
     }
 
-    $: {
-        if (Array.isArray(value)) {
-            value.forEach((v) => v = integer ? Math.round(v) : v)
-        } else {
-            value = integer ? Math.round(value) : value
-        }
-        dispatch('change', value)
-    }
+
+    
+    
 
     const squashMax = (val:number) => Math.min(max, val)
     const upliftMin = (val:number) => Math.max(min, val)
@@ -135,6 +131,32 @@
         : valToPerc(val)        
     }
 
+
+    // let perMin:number, perMax:number, perDif:number
+    export const updatePointers = () => {
+        perMin = Number.isNaN(valToPerc(lower)) ? 0 : valToPerc(lower) // - valToPerc(min)
+        perMax = handlePerMax(upper)
+        perDif = perMax - perMin
+        if (pointerMin) pointerMin.style.left = `${perMin}%`
+        if (pointerMax) pointerMax.style.left = `${perMax}%`
+    }
+
+    export const manuallySetBounds = (mi?:number, ma?:number, lo?:number, up?:number) => {
+        if (mi) min = mi
+        if (ma) max = ma
+        if (lo) lower = lo
+        if (up) upper = up
+        updatePointers()
+    }
+
+    $: {
+        if (Array.isArray(value)) {
+            value.forEach((v) => v = integer ? Math.round(v) : v)
+        } else {
+            value = integer ? Math.round(value) : value
+        }
+        dispatch('change', value)
+    }
     $: perMin = Number.isNaN(valToPerc(lower)) ? 0 : valToPerc(lower) // - valToPerc(min)
     $: perMax = handlePerMax(upper)
     $: perDif = perMax - perMin
@@ -180,7 +202,6 @@
         ]
     });
 </script>
-  
 <svelte:window
     on:mousemove={movePointer}
     on:touchmove={movePointer}

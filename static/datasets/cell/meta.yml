@@ -1,0 +1,1258 @@
+columns:
+- conditions
+- gene 1
+- gene 10
+- gene 100
+- gene 11
+- gene 12
+- gene 13
+- gene 14
+- gene 15
+- gene 16
+- gene 17
+- gene 18
+- gene 19
+- gene 2
+- gene 20
+- gene 21
+- gene 22
+- gene 23
+- gene 24
+- gene 25
+- gene 26
+- gene 27
+- gene 28
+- gene 29
+- gene 3
+- gene 30
+- gene 31
+- gene 32
+- gene 33
+- gene 34
+- gene 35
+- gene 36
+- gene 37
+- gene 38
+- gene 39
+- gene 4
+- gene 40
+- gene 41
+- gene 42
+- gene 43
+- gene 44
+- gene 45
+- gene 46
+- gene 47
+- gene 48
+- gene 49
+- gene 5
+- gene 50
+- gene 51
+- gene 52
+- gene 53
+- gene 54
+- gene 55
+- gene 56
+- gene 57
+- gene 58
+- gene 59
+- gene 6
+- gene 60
+- gene 61
+- gene 62
+- gene 63
+- gene 64
+- gene 65
+- gene 66
+- gene 67
+- gene 68
+- gene 69
+- gene 7
+- gene 70
+- gene 71
+- gene 72
+- gene 73
+- gene 74
+- gene 75
+- gene 76
+- gene 77
+- gene 78
+- gene 79
+- gene 8
+- gene 80
+- gene 81
+- gene 82
+- gene 83
+- gene 84
+- gene 85
+- gene 86
+- gene 87
+- gene 88
+- gene 89
+- gene 9
+- gene 90
+- gene 91
+- gene 92
+- gene 93
+- gene 94
+- gene 95
+- gene 96
+- gene 97
+- gene 98
+- gene 99
+- x
+- y
+- z
+columns_metadata:
+  conditions:
+    domain:
+    - 0
+    - 3
+    field: conditions
+    human: conditions
+    is_sidecar: false
+    max: 3
+    min: 0
+    type: category
+  gene 1:
+    domain:
+    - -3.5794320252926526
+    - 3.618917266844968
+    field: gene 1
+    human: gene 1
+    is_sidecar: true
+    max: 3.618917266844968
+    min: -3.5794320252926526
+    type: number
+  gene 10:
+    domain:
+    - -4.3215279887013125
+    - 3.9991537436898064
+    field: gene 10
+    human: gene 10
+    is_sidecar: true
+    max: 3.9991537436898064
+    min: -4.3215279887013125
+    type: number
+  gene 100:
+    domain:
+    - -4.298888389357065
+    - 3.757526197852163
+    field: gene 100
+    human: gene 100
+    is_sidecar: true
+    max: 3.757526197852163
+    min: -4.298888389357065
+    type: number
+  gene 11:
+    domain:
+    - -3.72435609569697
+    - 3.7560216346286985
+    field: gene 11
+    human: gene 11
+    is_sidecar: true
+    max: 3.7560216346286985
+    min: -3.72435609569697
+    type: number
+  gene 12:
+    domain:
+    - -3.5845022324202915
+    - 3.7964655181759364
+    field: gene 12
+    human: gene 12
+    is_sidecar: true
+    max: 3.7964655181759364
+    min: -3.5845022324202915
+    type: number
+  gene 13:
+    domain:
+    - -3.5342421782800066
+    - 3.753508367667418
+    field: gene 13
+    human: gene 13
+    is_sidecar: true
+    max: 3.753508367667418
+    min: -3.5342421782800066
+    type: number
+  gene 14:
+    domain:
+    - -3.871121166870837
+    - 3.5149154886394203
+    field: gene 14
+    human: gene 14
+    is_sidecar: true
+    max: 3.5149154886394203
+    min: -3.871121166870837
+    type: number
+  gene 15:
+    domain:
+    - -3.5621996467608867
+    - 3.4237448089849476
+    field: gene 15
+    human: gene 15
+    is_sidecar: true
+    max: 3.4237448089849476
+    min: -3.5621996467608867
+    type: number
+  gene 16:
+    domain:
+    - -3.9632576529833616
+    - 4.052120956576173
+    field: gene 16
+    human: gene 16
+    is_sidecar: true
+    max: 4.052120956576173
+    min: -3.9632576529833616
+    type: number
+  gene 17:
+    domain:
+    - -3.6344560157048207
+    - 4.079385335787735
+    field: gene 17
+    human: gene 17
+    is_sidecar: true
+    max: 4.079385335787735
+    min: -3.6344560157048207
+    type: number
+  gene 18:
+    domain:
+    - -3.687780632813344
+    - 3.8297822272040696
+    field: gene 18
+    human: gene 18
+    is_sidecar: true
+    max: 3.8297822272040696
+    min: -3.687780632813344
+    type: number
+  gene 19:
+    domain:
+    - -3.4050902526055693
+    - 4.2651790412770145
+    field: gene 19
+    human: gene 19
+    is_sidecar: true
+    max: 4.2651790412770145
+    min: -3.4050902526055693
+    type: number
+  gene 2:
+    domain:
+    - -3.875346739510917
+    - 3.9163918897419743
+    field: gene 2
+    human: gene 2
+    is_sidecar: true
+    max: 3.9163918897419743
+    min: -3.875346739510917
+    type: number
+  gene 20:
+    domain:
+    - -3.9648473310246333
+    - 3.4977106222244867
+    field: gene 20
+    human: gene 20
+    is_sidecar: true
+    max: 3.4977106222244867
+    min: -3.9648473310246333
+    type: number
+  gene 21:
+    domain:
+    - -4.09209481928548
+    - 3.7708235335238998
+    field: gene 21
+    human: gene 21
+    is_sidecar: true
+    max: 3.7708235335238998
+    min: -4.09209481928548
+    type: number
+  gene 22:
+    domain:
+    - -4.004007794725377
+    - 3.7226921732842495
+    field: gene 22
+    human: gene 22
+    is_sidecar: true
+    max: 3.7226921732842495
+    min: -4.004007794725377
+    type: number
+  gene 23:
+    domain:
+    - -3.969480955442745
+    - 4.221123541306701
+    field: gene 23
+    human: gene 23
+    is_sidecar: true
+    max: 4.221123541306701
+    min: -3.969480955442745
+    type: number
+  gene 24:
+    domain:
+    - -3.7669791418192555
+    - 3.931875608188543
+    field: gene 24
+    human: gene 24
+    is_sidecar: true
+    max: 3.931875608188543
+    min: -3.7669791418192555
+    type: number
+  gene 25:
+    domain:
+    - -3.424660676947232
+    - 4.076906722764778
+    field: gene 25
+    human: gene 25
+    is_sidecar: true
+    max: 4.076906722764778
+    min: -3.424660676947232
+    type: number
+  gene 26:
+    domain:
+    - -3.638855704558938
+    - 3.4778525183873885
+    field: gene 26
+    human: gene 26
+    is_sidecar: true
+    max: 3.4778525183873885
+    min: -3.638855704558938
+    type: number
+  gene 27:
+    domain:
+    - -4.875387102375456
+    - 4.208017664263998
+    field: gene 27
+    human: gene 27
+    is_sidecar: true
+    max: 4.208017664263998
+    min: -4.875387102375456
+    type: number
+  gene 28:
+    domain:
+    - -3.871336953775734
+    - 3.653336641070605
+    field: gene 28
+    human: gene 28
+    is_sidecar: true
+    max: 3.653336641070605
+    min: -3.871336953775734
+    type: number
+  gene 29:
+    domain:
+    - -3.4392031460595063
+    - 3.9113128778397863
+    field: gene 29
+    human: gene 29
+    is_sidecar: true
+    max: 3.9113128778397863
+    min: -3.4392031460595063
+    type: number
+  gene 3:
+    domain:
+    - -3.618555692174141
+    - 3.59246312400092
+    field: gene 3
+    human: gene 3
+    is_sidecar: true
+    max: 3.59246312400092
+    min: -3.618555692174141
+    type: number
+  gene 30:
+    domain:
+    - -4.075619139269784
+    - 4.27332790237644
+    field: gene 30
+    human: gene 30
+    is_sidecar: true
+    max: 4.27332790237644
+    min: -4.075619139269784
+    type: number
+  gene 31:
+    domain:
+    - -4.036870293993946
+    - 4.9614940676961234
+    field: gene 31
+    human: gene 31
+    is_sidecar: true
+    max: 4.9614940676961234
+    min: -4.036870293993946
+    type: number
+  gene 32:
+    domain:
+    - -4.0654400107844
+    - 3.976124486158384
+    field: gene 32
+    human: gene 32
+    is_sidecar: true
+    max: 3.976124486158384
+    min: -4.0654400107844
+    type: number
+  gene 33:
+    domain:
+    - -3.6725467144902035
+    - 3.855382230234286
+    field: gene 33
+    human: gene 33
+    is_sidecar: true
+    max: 3.855382230234286
+    min: -3.6725467144902035
+    type: number
+  gene 34:
+    domain:
+    - -3.9310043115921998
+    - 3.5016650982929782
+    field: gene 34
+    human: gene 34
+    is_sidecar: true
+    max: 3.5016650982929782
+    min: -3.9310043115921998
+    type: number
+  gene 35:
+    domain:
+    - -4.146674633079063
+    - 3.6634184093537425
+    field: gene 35
+    human: gene 35
+    is_sidecar: true
+    max: 3.6634184093537425
+    min: -4.146674633079063
+    type: number
+  gene 36:
+    domain:
+    - -3.5230694377780383
+    - 3.891904479998541
+    field: gene 36
+    human: gene 36
+    is_sidecar: true
+    max: 3.891904479998541
+    min: -3.5230694377780383
+    type: number
+  gene 37:
+    domain:
+    - -3.457882048995905
+    - 3.785751473277333
+    field: gene 37
+    human: gene 37
+    is_sidecar: true
+    max: 3.785751473277333
+    min: -3.457882048995905
+    type: number
+  gene 38:
+    domain:
+    - -4.025222907799901
+    - 3.4911353725904135
+    field: gene 38
+    human: gene 38
+    is_sidecar: true
+    max: 3.4911353725904135
+    min: -4.025222907799901
+    type: number
+  gene 39:
+    domain:
+    - -3.4894765780128725
+    - 3.8886528739812523
+    field: gene 39
+    human: gene 39
+    is_sidecar: true
+    max: 3.8886528739812523
+    min: -3.4894765780128725
+    type: number
+  gene 4:
+    domain:
+    - -3.7794708935356987
+    - 4.1302420414757846
+    field: gene 4
+    human: gene 4
+    is_sidecar: true
+    max: 4.1302420414757846
+    min: -3.7794708935356987
+    type: number
+  gene 40:
+    domain:
+    - -4.281179409260568
+    - 3.8667886460451837
+    field: gene 40
+    human: gene 40
+    is_sidecar: true
+    max: 3.8667886460451837
+    min: -4.281179409260568
+    type: number
+  gene 41:
+    domain:
+    - -3.4093497836415896
+    - 3.6631970072548365
+    field: gene 41
+    human: gene 41
+    is_sidecar: true
+    max: 3.6631970072548365
+    min: -3.4093497836415896
+    type: number
+  gene 42:
+    domain:
+    - -3.4067034164999277
+    - 3.651054639582008
+    field: gene 42
+    human: gene 42
+    is_sidecar: true
+    max: 3.651054639582008
+    min: -3.4067034164999277
+    type: number
+  gene 43:
+    domain:
+    - -4.032050944206589
+    - 3.743850706490528
+    field: gene 43
+    human: gene 43
+    is_sidecar: true
+    max: 3.743850706490528
+    min: -4.032050944206589
+    type: number
+  gene 44:
+    domain:
+    - -3.915740260640943
+    - 4.06842288251068
+    field: gene 44
+    human: gene 44
+    is_sidecar: true
+    max: 4.06842288251068
+    min: -3.915740260640943
+    type: number
+  gene 45:
+    domain:
+    - -4.085841387421945
+    - 3.5747398069651255
+    field: gene 45
+    human: gene 45
+    is_sidecar: true
+    max: 3.5747398069651255
+    min: -4.085841387421945
+    type: number
+  gene 46:
+    domain:
+    - -4.899202941331222
+    - 3.8158172190685327
+    field: gene 46
+    human: gene 46
+    is_sidecar: true
+    max: 3.8158172190685327
+    min: -4.899202941331222
+    type: number
+  gene 47:
+    domain:
+    - -4.2517117053308064
+    - 3.8949884718841266
+    field: gene 47
+    human: gene 47
+    is_sidecar: true
+    max: 3.8949884718841266
+    min: -4.2517117053308064
+    type: number
+  gene 48:
+    domain:
+    - -3.714135671636217
+    - 3.7190033978975663
+    field: gene 48
+    human: gene 48
+    is_sidecar: true
+    max: 3.7190033978975663
+    min: -3.714135671636217
+    type: number
+  gene 49:
+    domain:
+    - -4.142364962721775
+    - 3.5227768929890146
+    field: gene 49
+    human: gene 49
+    is_sidecar: true
+    max: 3.5227768929890146
+    min: -4.142364962721775
+    type: number
+  gene 5:
+    domain:
+    - -3.875013957663497
+    - 3.7312752149236266
+    field: gene 5
+    human: gene 5
+    is_sidecar: true
+    max: 3.7312752149236266
+    min: -3.875013957663497
+    type: number
+  gene 50:
+    domain:
+    - -3.881235678253957
+    - 3.4219409234166225
+    field: gene 50
+    human: gene 50
+    is_sidecar: true
+    max: 3.4219409234166225
+    min: -3.881235678253957
+    type: number
+  gene 51:
+    domain:
+    - -3.4964584713094946
+    - 3.975868214855791
+    field: gene 51
+    human: gene 51
+    is_sidecar: true
+    max: 3.975868214855791
+    min: -3.4964584713094946
+    type: number
+  gene 52:
+    domain:
+    - -3.7126135269596046
+    - 3.4322592178893627
+    field: gene 52
+    human: gene 52
+    is_sidecar: true
+    max: 3.4322592178893627
+    min: -3.7126135269596046
+    type: number
+  gene 53:
+    domain:
+    - -3.7983733136414783
+    - 3.5707056917539215
+    field: gene 53
+    human: gene 53
+    is_sidecar: true
+    max: 3.5707056917539215
+    min: -3.7983733136414783
+    type: number
+  gene 54:
+    domain:
+    - -3.5675265866149357
+    - 3.6922443719082367
+    field: gene 54
+    human: gene 54
+    is_sidecar: true
+    max: 3.6922443719082367
+    min: -3.5675265866149357
+    type: number
+  gene 55:
+    domain:
+    - -3.575856949386009
+    - 3.78867131541516
+    field: gene 55
+    human: gene 55
+    is_sidecar: true
+    max: 3.78867131541516
+    min: -3.575856949386009
+    type: number
+  gene 56:
+    domain:
+    - -3.6867638775923766
+    - 3.762264561823066
+    field: gene 56
+    human: gene 56
+    is_sidecar: true
+    max: 3.762264561823066
+    min: -3.6867638775923766
+    type: number
+  gene 57:
+    domain:
+    - -3.5543989682469483
+    - 3.6635487628293073
+    field: gene 57
+    human: gene 57
+    is_sidecar: true
+    max: 3.6635487628293073
+    min: -3.5543989682469483
+    type: number
+  gene 58:
+    domain:
+    - -3.688458699555239
+    - 4.467953265500662
+    field: gene 58
+    human: gene 58
+    is_sidecar: true
+    max: 4.467953265500662
+    min: -3.688458699555239
+    type: number
+  gene 59:
+    domain:
+    - -4.08791275693543
+    - 4.126073972398418
+    field: gene 59
+    human: gene 59
+    is_sidecar: true
+    max: 4.126073972398418
+    min: -4.08791275693543
+    type: number
+  gene 6:
+    domain:
+    - -3.4476480165227086
+    - 3.8645069333321755
+    field: gene 6
+    human: gene 6
+    is_sidecar: true
+    max: 3.8645069333321755
+    min: -3.4476480165227086
+    type: number
+  gene 60:
+    domain:
+    - -4.464460681553354
+    - 3.414878359084421
+    field: gene 60
+    human: gene 60
+    is_sidecar: true
+    max: 3.414878359084421
+    min: -4.464460681553354
+    type: number
+  gene 61:
+    domain:
+    - -3.4727352919476435
+    - 3.3382333453579665
+    field: gene 61
+    human: gene 61
+    is_sidecar: true
+    max: 3.3382333453579665
+    min: -3.4727352919476435
+    type: number
+  gene 62:
+    domain:
+    - -3.9992006253146632
+    - 3.748234109287536
+    field: gene 62
+    human: gene 62
+    is_sidecar: true
+    max: 3.748234109287536
+    min: -3.9992006253146632
+    type: number
+  gene 63:
+    domain:
+    - -3.935430732229486
+    - 4.337880164960788
+    field: gene 63
+    human: gene 63
+    is_sidecar: true
+    max: 4.337880164960788
+    min: -3.935430732229486
+    type: number
+  gene 64:
+    domain:
+    - -3.3776326128841174
+    - 4.0367908519671145
+    field: gene 64
+    human: gene 64
+    is_sidecar: true
+    max: 4.0367908519671145
+    min: -3.3776326128841174
+    type: number
+  gene 65:
+    domain:
+    - -4.421528689031008
+    - 4.103911038051602
+    field: gene 65
+    human: gene 65
+    is_sidecar: true
+    max: 4.103911038051602
+    min: -4.421528689031008
+    type: number
+  gene 66:
+    domain:
+    - -3.830009396962463
+    - 3.979781115174099
+    field: gene 66
+    human: gene 66
+    is_sidecar: true
+    max: 3.979781115174099
+    min: -3.830009396962463
+    type: number
+  gene 67:
+    domain:
+    - -3.5265205226404346
+    - 3.912718171728595
+    field: gene 67
+    human: gene 67
+    is_sidecar: true
+    max: 3.912718171728595
+    min: -3.5265205226404346
+    type: number
+  gene 68:
+    domain:
+    - -3.7305739319094795
+    - 4.115100052169804
+    field: gene 68
+    human: gene 68
+    is_sidecar: true
+    max: 4.115100052169804
+    min: -3.7305739319094795
+    type: number
+  gene 69:
+    domain:
+    - -4.054147346228226
+    - 4.313319435047805
+    field: gene 69
+    human: gene 69
+    is_sidecar: true
+    max: 4.313319435047805
+    min: -4.054147346228226
+    type: number
+  gene 7:
+    domain:
+    - -3.7750184069531643
+    - 3.7209759424963584
+    field: gene 7
+    human: gene 7
+    is_sidecar: true
+    max: 3.7209759424963584
+    min: -3.7750184069531643
+    type: number
+  gene 70:
+    domain:
+    - -3.5964936766243243
+    - 3.8165092819065176
+    field: gene 70
+    human: gene 70
+    is_sidecar: true
+    max: 3.8165092819065176
+    min: -3.5964936766243243
+    type: number
+  gene 71:
+    domain:
+    - -3.7988519869217234
+    - 3.8752522500790327
+    field: gene 71
+    human: gene 71
+    is_sidecar: true
+    max: 3.8752522500790327
+    min: -3.7988519869217234
+    type: number
+  gene 72:
+    domain:
+    - -4.1015988432806205
+    - 3.8639498747747525
+    field: gene 72
+    human: gene 72
+    is_sidecar: true
+    max: 3.8639498747747525
+    min: -4.1015988432806205
+    type: number
+  gene 73:
+    domain:
+    - -3.521029546503982
+    - 4.129033398347885
+    field: gene 73
+    human: gene 73
+    is_sidecar: true
+    max: 4.129033398347885
+    min: -3.521029546503982
+    type: number
+  gene 74:
+    domain:
+    - -3.3868308175711093
+    - 3.720586466693437
+    field: gene 74
+    human: gene 74
+    is_sidecar: true
+    max: 3.720586466693437
+    min: -3.3868308175711093
+    type: number
+  gene 75:
+    domain:
+    - -3.5424454119409012
+    - 3.536743007180999
+    field: gene 75
+    human: gene 75
+    is_sidecar: true
+    max: 3.536743007180999
+    min: -3.5424454119409012
+    type: number
+  gene 76:
+    domain:
+    - -3.398435913447542
+    - 4.409491466685126
+    field: gene 76
+    human: gene 76
+    is_sidecar: true
+    max: 4.409491466685126
+    min: -3.398435913447542
+    type: number
+  gene 77:
+    domain:
+    - -3.5553894965587456
+    - 3.5430515082299734
+    field: gene 77
+    human: gene 77
+    is_sidecar: true
+    max: 3.5430515082299734
+    min: -3.5553894965587456
+    type: number
+  gene 78:
+    domain:
+    - -4.908599235971054
+    - 4.0547982392033415
+    field: gene 78
+    human: gene 78
+    is_sidecar: true
+    max: 4.0547982392033415
+    min: -4.908599235971054
+    type: number
+  gene 79:
+    domain:
+    - -3.5152185331320287
+    - 4.240367267676067
+    field: gene 79
+    human: gene 79
+    is_sidecar: true
+    max: 4.240367267676067
+    min: -3.5152185331320287
+    type: number
+  gene 8:
+    domain:
+    - -3.522366310538952
+    - 3.7012989969627133
+    field: gene 8
+    human: gene 8
+    is_sidecar: true
+    max: 3.7012989969627133
+    min: -3.522366310538952
+    type: number
+  gene 80:
+    domain:
+    - -3.531814244509615
+    - 4.158730020211894
+    field: gene 80
+    human: gene 80
+    is_sidecar: true
+    max: 4.158730020211894
+    min: -3.531814244509615
+    type: number
+  gene 81:
+    domain:
+    - -3.4996873747987283
+    - 3.842669329526343
+    field: gene 81
+    human: gene 81
+    is_sidecar: true
+    max: 3.842669329526343
+    min: -3.4996873747987283
+    type: number
+  gene 82:
+    domain:
+    - -3.3553906772920357
+    - 4.381606085866131
+    field: gene 82
+    human: gene 82
+    is_sidecar: true
+    max: 4.381606085866131
+    min: -3.3553906772920357
+    type: number
+  gene 83:
+    domain:
+    - -3.365238974433674
+    - 3.574031890214057
+    field: gene 83
+    human: gene 83
+    is_sidecar: true
+    max: 3.574031890214057
+    min: -3.365238974433674
+    type: number
+  gene 84:
+    domain:
+    - -3.7367282881954145
+    - 3.7510878940910954
+    field: gene 84
+    human: gene 84
+    is_sidecar: true
+    max: 3.7510878940910954
+    min: -3.7367282881954145
+    type: number
+  gene 85:
+    domain:
+    - -3.4955473392077594
+    - 3.3628632944060355
+    field: gene 85
+    human: gene 85
+    is_sidecar: true
+    max: 3.3628632944060355
+    min: -3.4955473392077594
+    type: number
+  gene 86:
+    domain:
+    - -4.107281150930525
+    - 3.9820074156608176
+    field: gene 86
+    human: gene 86
+    is_sidecar: true
+    max: 3.9820074156608176
+    min: -4.107281150930525
+    type: number
+  gene 87:
+    domain:
+    - -3.676655505795806
+    - 4.271186089154579
+    field: gene 87
+    human: gene 87
+    is_sidecar: true
+    max: 4.271186089154579
+    min: -3.676655505795806
+    type: number
+  gene 88:
+    domain:
+    - -3.9803634664405956
+    - 3.8095787735604687
+    field: gene 88
+    human: gene 88
+    is_sidecar: true
+    max: 3.8095787735604687
+    min: -3.9803634664405956
+    type: number
+  gene 89:
+    domain:
+    - -4.486294616347031
+    - 4.365092186632724
+    field: gene 89
+    human: gene 89
+    is_sidecar: true
+    max: 4.365092186632724
+    min: -4.486294616347031
+    type: number
+  gene 9:
+    domain:
+    - -3.8653900910047536
+    - 3.611831937426158
+    field: gene 9
+    human: gene 9
+    is_sidecar: true
+    max: 3.611831937426158
+    min: -3.8653900910047536
+    type: number
+  gene 90:
+    domain:
+    - -3.72631548893972
+    - 3.21629437115703
+    field: gene 90
+    human: gene 90
+    is_sidecar: true
+    max: 3.21629437115703
+    min: -3.72631548893972
+    type: number
+  gene 91:
+    domain:
+    - -3.4318613300175476
+    - 3.6207738891027614
+    field: gene 91
+    human: gene 91
+    is_sidecar: true
+    max: 3.6207738891027614
+    min: -3.4318613300175476
+    type: number
+  gene 92:
+    domain:
+    - -4.111451400444217
+    - 3.3185938924703873
+    field: gene 92
+    human: gene 92
+    is_sidecar: true
+    max: 3.3185938924703873
+    min: -4.111451400444217
+    type: number
+  gene 93:
+    domain:
+    - -4.02065336085688
+    - 4.5670079221560975
+    field: gene 93
+    human: gene 93
+    is_sidecar: true
+    max: 4.5670079221560975
+    min: -4.02065336085688
+    type: number
+  gene 94:
+    domain:
+    - -3.933784999394039
+    - 3.6694815582000873
+    field: gene 94
+    human: gene 94
+    is_sidecar: true
+    max: 3.6694815582000873
+    min: -3.933784999394039
+    type: number
+  gene 95:
+    domain:
+    - -3.920014144983569
+    - 3.689981332766309
+    field: gene 95
+    human: gene 95
+    is_sidecar: true
+    max: 3.689981332766309
+    min: -3.920014144983569
+    type: number
+  gene 96:
+    domain:
+    - -4.498839781305038
+    - 3.725676688486722
+    field: gene 96
+    human: gene 96
+    is_sidecar: true
+    max: 3.725676688486722
+    min: -4.498839781305038
+    type: number
+  gene 97:
+    domain:
+    - -4.129175705554287
+    - 3.790187374468765
+    field: gene 97
+    human: gene 97
+    is_sidecar: true
+    max: 3.790187374468765
+    min: -4.129175705554287
+    type: number
+  gene 98:
+    domain:
+    - -3.7733350848843807
+    - 3.6498335649265337
+    field: gene 98
+    human: gene 98
+    is_sidecar: true
+    max: 3.6498335649265337
+    min: -3.7733350848843807
+    type: number
+  gene 99:
+    domain:
+    - -3.9410004601285027
+    - 3.4505336564551827
+    field: gene 99
+    human: gene 99
+    is_sidecar: true
+    max: 3.4505336564551827
+    min: -3.9410004601285027
+    type: number
+  x:
+    domain:
+    - -3.806201297051357
+    - 3.3731154022873495
+    field: x
+    human: x
+    is_sidecar: false
+    max: 3.3731154022873495
+    min: -3.806201297051357
+    type: number
+  y:
+    domain:
+    - -3.8489536086826868
+    - 3.453347382020356
+    field: y
+    human: y
+    is_sidecar: false
+    max: 3.453347382020356
+    min: -3.8489536086826868
+    type: number
+  z:
+    domain:
+    - -3.8066248716969193
+    - 4.422958454817124
+    field: z
+    human: z
+    is_sidecar: false
+    max: 4.422958454817124
+    min: -3.8066248716969193
+    type: number
+embedding_columns:
+- x
+- y
+- z
+- conditions
+index: barcodes
+n_points: 10000
+seed: 3
+sidecar_columns:
+- gene 1
+- gene 2
+- gene 3
+- gene 4
+- gene 5
+- gene 6
+- gene 7
+- gene 8
+- gene 9
+- gene 10
+- gene 11
+- gene 12
+- gene 13
+- gene 14
+- gene 15
+- gene 16
+- gene 17
+- gene 18
+- gene 19
+- gene 20
+- gene 21
+- gene 22
+- gene 23
+- gene 24
+- gene 25
+- gene 26
+- gene 27
+- gene 28
+- gene 29
+- gene 30
+- gene 31
+- gene 32
+- gene 33
+- gene 34
+- gene 35
+- gene 36
+- gene 37
+- gene 38
+- gene 39
+- gene 40
+- gene 41
+- gene 42
+- gene 43
+- gene 44
+- gene 45
+- gene 46
+- gene 47
+- gene 48
+- gene 49
+- gene 50
+- gene 51
+- gene 52
+- gene 53
+- gene 54
+- gene 55
+- gene 56
+- gene 57
+- gene 58
+- gene 59
+- gene 60
+- gene 61
+- gene 62
+- gene 63
+- gene 64
+- gene 65
+- gene 66
+- gene 67
+- gene 68
+- gene 69
+- gene 70
+- gene 71
+- gene 72
+- gene 73
+- gene 74
+- gene 75
+- gene 76
+- gene 77
+- gene 78
+- gene 79
+- gene 80
+- gene 81
+- gene 82
+- gene 83
+- gene 84
+- gene 85
+- gene 86
+- gene 87
+- gene 88
+- gene 89
+- gene 90
+- gene 91
+- gene 92
+- gene 93
+- gene 94
+- gene 95
+- gene 96
+- gene 97
+- gene 98
+- gene 99
+- gene 100
+target_dir: /datasets/cell
+tile_size: 1000
+tiles_dir: /datasets/cell/tiles

@@ -1,57 +1,61 @@
-export type ColumnMetadata = {
-    name: string; // arrow format e.g. 'x' 
-    text: string; // human friendly e.g. 't-SNE 1'
-    type: string; // float64 | categorical | boolean | string, etc
-    min: number
-    max: number
-    is_sidecar: boolean
-    domain: [number, number]
+// ------------------------------------------------------------------------------------------------------------------
+// DeepScatter Type Aliases
+// ------------------------------------------------------------------------------------------------------------------
+// NOTE this is defined in the code base but never exported
+// URL: https://github.com/nomic-ai/deepscatter/blob/main/src/global.d.ts#LL71C2-L71C58
+export type Transform = 'log' | 'sqrt' | 'linear' | 'literal';
+
+export type constant = number | string | boolean | undefined 
+
+// NOTE: these are never defined in the codebase
+export type MinMax = [number, number]// | [string, string];
+
+export type Range  = [number, number];
+export type Domain = [number, number];
+
+export type StringOrStrings = string | string[];
+
+// ------------------------------------------------------------------------------------------------------------------
+// DeepScatter Points and Extents
+// ------------------------------------------------------------------------------------------------------------------
+
+// NOTE: these are all custom / new (not derived like above)
+export type Points = Record<string, number | string>[]
+
+export type Extents = {
+    x?: Domain
+    y?: Domain
+    z?: Domain
 }
 
-export type ColumnsMetadata = {
-    [key: string]: ColumnMetadata
+// ------------------------------------------------------------------------------------------------------------------
+// DeepScatter Events
+// ------------------------------------------------------------------------------------------------------------------
+
+export interface DeepScatterReadyEvent {
+    ready: boolean
 }
 
-export type Metadata = {
-    column_metadata: ColumnMetadata;
-    dataset_name: string;
-    embedding_columns?: string[];
-    sidecar_columns?: string[];
-    label_name?: string;
-    n_points?: number;
-    seed?: number;
-    target_dir?: string;
-    tile_size?: number;
-    tiles_dir?: string;
+export interface DeepScatterExtentEvent {
+    extents: Extents
+}
+
+export interface DeepScatterSampleEvent {
+    points: Points
+}
+
+export interface DeepScatterFieldsEvent {
+    fields?: string[]
+}
+
+export interface DeepScatterSchemaEvent {
+    schema?: any
 }
 
 
-export type PlotArgs = {    
-    zoom?: ZoomCall;
-    zoom_align?: ZoomAlign;
-    /** The magnification coefficient for a zooming item */
-    zoom_balance?: number;
-
-    encoding: EncodingChannels;
-
-    /** The length of time to take for the transition to this state. */
-    duration?: number;
-
-    /** The base point size for aes is modified */
-    point_size?: number;
-
-    /** The maximum number of points to load */
-    max_points?: number;
-
-    /** Overall screen saturation target at average point density */
-    alpha?: number;
-
-    /** A function defind as a string that takes implied argument 'datum' */
-    click_function?: string;
-
-    labels?: Labelcall;
-    background_options?: BackgroundOptions;  
-};
+// ------------------------------------------------------------------------------------------------------------------
+// DeepScatter Zoom
+// ------------------------------------------------------------------------------------------------------------------
 
 // NOTE: this is never defined in the codebase, but is used in the type definitions.
 export type ZoomAlign = undefined | 'right' | 'left' | 'top' | 'bottom' | 'center';
@@ -65,106 +69,141 @@ export type BBox = {
     x: [number, number];
     y: [number, number];    
 }
-  
-
-export type constant = number | string | boolean | undefined 
-
-// NOTE: these are never defined in the codebase
-export type range  = [number, number];
-export type domain = [number, number];
-
-type BasicColorRange = string[] | string;
-type CategoricalColorRange = string[] | string;
-type CategoricalColorDomain = string[];
 
 
-export type Range  = range | BasicColorRange | CategoricalColorRange;
-export type Domain = domain | CategoricalColorDomain;
+// ------------------------------------------------------------------------------------------------------------------
+// DeepScatter Background Options
+// ------------------------------------------------------------------------------------------------------------------
+
+// URL: https://github.com/nomic-ai/deepscatter/blob/main/src/global.d.ts#L75
+export type BackgroundOptions = {
+    color?: string;
+    opacity?: number | MinMax;
+    size?: number | MinMax;
+    mouseover?: boolean;
+};
+
+
+// ------------------------------------------------------------------------------------------------------------------
+// DeepScatter Labels
+// ------------------------------------------------------------------------------------------------------------------
+
+// URL: https://github.com/nomic-ai/deepscatter/blob/main/src/global.d.ts#LL245-L267C55
+export type Label = {
+    x: number;
+    y: number;
+    text: string;
+};
+
+export type LabelOptions = {
+    useColorScale?: boolean; // Whether the colors of text should inherit from the active color scale.
+    margin?: number; // The number of pixels around each box. Default 30.
+    draggable_labels?: boolean; // Should labels be draggable in place?
+};
+
+
+export type LabelCall = LabelSet | URLLabels | null;
+
+
+interface LabelBase {
+    options?: LabelOptions;
+}
+
+export type URLLabels = LabelBase & {
+    url: string;
+    label_field: string;
+    size_field: string;
+};
+
+export type LabelSet = LabelBase & {
+    labels: Label[];
+    name: string;
+};
+
+// ------------------------------------------------------------------------------------------------------------------
+// DeepScatter Constant Channels
+// ------------------------------------------------------------------------------------------------------------------
+
+export type BaseConstantChannel<T> = {
+    constant: T;
+};
+
+export type ConstantBool = BaseConstantChannel<boolean>;
+export type ConstantNumber = BaseConstantChannel<number>;
+export type ConstantColorChannel = BaseConstantChannel<string>;
+
+export type ConstantChannel = ConstantBool | ConstantNumber | ConstantColorChannel;
+
+
+// ------------------------------------------------------------------------------------------------------------------
+// DeepScatter Conditional & Functional Channels
+// ------------------------------------------------------------------------------------------------------------------
+export interface ChannelBase {
+    field: string;
+    [name: string]: any;
+}
 
 // NOTE: never defiend
 export type SingleArgumentConditonal = 'gt' | 'lt' | 'gte' | 'lte' | 'eq' | 'neq';
 export type TwoArgumentConditional = 'between' | 'within';
 export type Conditional = SingleArgumentConditonal | TwoArgumentConditional;
+
 // NOTE: never exported
 // NOTE: I renamed these / tweaked them 
 // https://github.com/nomic-ai/deepscatter/blob/main/src/global.d.ts#L21-L73
-export type ConditionalChannel = {
-    field: string;
+export interface ConditionalChannel extends ChannelBase {
     a: number;
     b?: number;
     op: Conditional;
 }
 
-export type LambdaChannel = {
-    field: string;
+export interface LambdaChannel extends ChannelBase {
     lambda: string;
-    domain: domain;
-    range: range;
+    domain: Domain;
+    range: Range;
 }
 
 export type FunctionalChannel = LambdaChannel | ConditionalChannel;
 
-
-
-// NOTE this is defined in the code base but never exported
-// URL: https://github.com/nomic-ai/deepscatter/blob/main/src/global.d.ts#LL71C2-L71C58
-export type Transform = 'log' | 'sqrt' | 'linear' | 'literal';
-
-export interface BasicChannelg<T extends object>  {
-    field: string;
-    /**
-     * A transformation to apply on the field.
-     * 'literal' maps in the implied dataspace set by 'x', 'y', while
-     * 'linear' transforms the data by the range and domain.
-     */
-    transform?: Transform;
-    // The domain over which the data extends
-    domain?: [number, number];
-    // The range into which to map the data.
-    range?: [number, number];
-}
-
-type ConstantBool = {
-    constant: boolean;
-};
-
-export type ConstantNumber = {
-    constant: number;
-};
-
-export type ConstantColorChannel = {
-    constant: string;
-};
-
-export type ConstantChannel =
-    | ConstantBool
-    | ConstantNumber
-    | ConstantColorChannel;
-
-
 export type BooleanChannel = FunctionalChannel | ConstantBool;
 
-export interface CategoricalChannel {
-    field: string;
+// ------------------------------------------------------------------------------------------------------------------
+// DeepScatter Channels
+// ------------------------------------------------------------------------------------------------------------------
+
+
+
+export interface BasicChannel extends ChannelBase {
+    transform?: Transform;
+    domain?: MinMax;
+    range?: MinMax;
+    [name: string]: any;
 }
 
-
-export type BasicColorChannel = BasicChannel & {
-    range?: string[] | string;
-    domain?: [number, number];
-};
+export interface CategoricalChannel extends ChannelBase {}
 
 
-export type CategoricalColorChannel = CategoricalChannel & {
-    range?: string | string[];
-    domain?: string[];
-};
+// ------------------------------------------------------------------------------------------------------------------
+// DeepScatter Color Channels
+// ------------------------------------------------------------------------------------------------------------------
+
+export interface ColorChannelBase extends ChannelBase {
+    range?: StringOrStrings;
+}
+
+export type BasicColorChannel = BasicChannel & ColorChannelBase;
+export type CategoricalColorChannel = CategoricalChannel & ColorChannelBase & { domain?: string[]; };
 
 export type ColorChannel =
     | BasicColorChannel
     | CategoricalColorChannel
     | ConstantColorChannel;
 
+
+
+// ------------------------------------------------------------------------------------------------------------------
+// DeepScatter Root Channels
+// ------------------------------------------------------------------------------------------------------------------
 
 export type RootChannel = 
     | BooleanChannel
@@ -176,29 +215,33 @@ export type RootChannel =
     | LambdaChannel;
 
 
+// ------------------------------------------------------------------------------------------------------------------
+// DeepScatter Jitter Channels
+// ------------------------------------------------------------------------------------------------------------------
+
 export type JitterRadiusMethod = | 'None' | 'spiral' | 'uniform' | 'normal' | 'circle' | 'time';
 
-
 export type JitterChannel = RootChannel & {
-    /**
-     * Jitter channels have a method.
-     * 'spiral' animates along a log spiral.
-     * 'uniform' jitters around a central point.
-     * 'normal' jitters around a central point biased towards the middle.
-     * 'circle' animates a circle around the point.
-     * 'time' lapses the point in and out of view.
-     */
     method: JitterRadiusMethod;
 };
+    
 
+// ------------------------------------------------------------------------------------------------------------------
+// DeepScatter Encoding
+// ------------------------------------------------------------------------------------------------------------------
 
 export type EncodingKey = 'x' | 'y' | 'color' | 'size' | 'shape' 
     | 'filter' | 'filter2' | 'jitter_radius' | 'jitter_speed' 
     | 'x0' | 'y0' | 'position' | 'position0' | 'foreground';
-    
-export type EncodingVal = RootChannel | ColorChannel | FunctionalChannel | JitterChannel | string | null | undefined;
 
-export type Encoding = {
+
+export type EncodingVal = RootChannel | ColorChannel | FunctionalChannel | JitterChannel | string | null;
+
+export type EncodingBase = {
+    [K in EncodingKey]?: EncodingVal;
+}
+
+export type Encoding = EncodingBase & {
     x?: RootChannel;
     y?: RootChannel;
     color?: null | ColorChannel;
@@ -215,110 +258,118 @@ export type Encoding = {
     foreground?: null | FunctionalChannel;
 };
 
-export type EncodingChannels = Encoding | {
-    [K in EncodingKey]?: EncodingVal;
-}
+// ------------------------------------------------------------------------------------------------------------------
+// DeepScatter PlotArgs
+// ------------------------------------------------------------------------------------------------------------------
 
-export function isEncodingValueString(channel:EncodingVal): channel is string {
-    return (channel instanceof String)
-}
-export function isEncodingValueNull(channel:EncodingVal): channel is null  {
-    return channel === null
-}
-export function isEncodingValueUndefined(channel:EncodingVal): channel is undefined  {
-    return channel === undefined
-}
-export function isEncodingValueEmpty(channel:EncodingVal) {
-    return isEncodingValueNull(channel) || isEncodingValueUndefined(channel)
-}
-export function isEncodingValueChannels(channel:EncodingVal): channel is RootChannel | ColorChannel | FunctionalChannel | JitterChannel {
-    return (channel instanceof Object)
-}
+export type PlotArgs = {    
+    zoom?: ZoomCall;
+    zoom_align?: ZoomAlign;
+    /** The magnification coefficient for a zooming item */
+    zoom_balance?: number;
 
+    encoding?: Encoding;
 
+    /** The length of time to take for the transition to this state. */
+    duration?: number;
 
+    /** The base point size for aes is modified */
+    point_size?: number;
 
+    /** The maximum number of points to load */
+    max_points?: number;
 
+    /** Overall screen saturation target at average point density */
+    alpha?: number;
 
-// URL: https://github.com/nomic-ai/deepscatter/blob/main/src/global.d.ts#L75
-export type BackgroundOptions = {
-    // The color of background points. Hex codes or HTML
-    // colors are accepted.
-    color?: string;
+    /** A function defind as a string that takes implied argument 'datum' */
+    click_function?: string;
 
-    // A multiplier against the point's opacity otherwise.
-    // A single value describes the background; an array
-    // describes the foreground and background separately.
-    opacity?: number | [number, number];
-
-    // A multiplier against the point's size. Default 0.66.
-    // A single value describes the background; an array
-    // describes the foreground and background separately.
-
-    size?: number | [number, number];
-
-    // Whether the background points should respond on mouseover.
-    mouseover?: boolean;
+    labels?: LabelCall;
+    background_options?: BackgroundOptions;  
+    [name: string]: any;
 };
 
+// ------------------------------------------------------------------------------------------------------------------
+// Dataset and MetaData
+// ------------------------------------------------------------------------------------------------------------------
 
-// URL: https://github.com/nomic-ai/deepscatter/blob/main/src/global.d.ts#LL245-L267C55
-export type Label = {
-    x: number;
-    y: number;
-    text: string;
+export type DatasetMetadata = null | {
+    // label column between main data and sidecar data, e.g. "label" / "barcode"
+    index: string
+
+    // total number of datapoints
+    n_points: number; 
+
+    // seed used to make data
+    seed?: number;
+
+    // where dataset was stored
+    target_dir?: string;
+
+    // size of tiles when using quadfeather
+    tile_size?: number;
+
+    // the relative path (eventually static URL) that deepscatter will be pointed to
+    tiles_dir: string;
+
+    // list of all columns
+    columns: string[]
+    
+    // list of embeding columns
+    embedding: string[]
+
+    // list of explict sidecar columns
+    sidecars: string[]
+
+    // map of {colname: metadata} needed for formatting channels
+    columns_metadata: ColumnsMetadata    
+    [name: string]: any;
+}
+
+export type MetaType = 'number' | 'category' | 'boolean' | 
+    'LambdaChannel' | 'ConditionalChannel' | 'ConditionalChannel' |
+    'BasicBooleanChannel' | 'CategoricalColorChannel' | 'BasicChannel'
+
+export type ColumnMetadata = {
+    // name of column (internal)
+    field: string
+
+    // human readable column label
+    human?: string
+    type?:  MetaType
+    is_sidecar?: boolean
+
+    min?: number | string
+    max?: number | string
+    domain?: Domain
+    [name: string]: any;
+}
+
+export type ColumnsMetadata = {
+    [key: string]: ColumnMetadata;    
+}
+
+
+// ------------------------------------------------------------------------------------------------------------------
+// DeepScatter PlotStore
+// ------------------------------------------------------------------------------------------------------------------
+
+export type PlotStore = {
+    args: PlotArgs;
+    meta: DatasetMetadata | null;    
+    [name: string]: any;
+}
+
+
+
+// ------------------------------------------------------------------------------------------------------------------
+// FeatherPlot PlotStore
+// ------------------------------------------------------------------------------------------------------------------
+export type DebugDetails = {
+    status: string;
+    event?: Event;
 };
+export type DebugMisc = any[];
 
-export type LabelOptions = {
-    useColorScale?: boolean; // Whether the colors of text should inherit from the active color scale.
-    margin?: number; // The number of pixels around each box. Default 30.
-    draggable_labels?: boolean; // Should labels be draggable in place?
-};
-
-export type URLLabels = {
-    url: string;
-    options: LabelOptions;
-    label_field: string;
-    size_field: string;
-};
-
-export type Labelset = {
-    labels: Label[];
-    name: string;
-    options?: LabelOptions;
-};
-
-export type Labelcall = Labelset | URLLabels | null;
-
-
-
-// NOTE: these are all custom / new (not derived like above)
-type Points = Record<string, number | string>[]
-
-type Extent = [number, number]
-
-type Extents = {
-    x?: Extent
-    y?: Extent
-    z?: Extent
-}
-
-export interface DeepScatterReadyEvent {
-    ready: boolean
-}
-
-interface DeepScatterExtentEvent {
-    extents: Extents
-}
-
-interface DeepScatterSampleEvent {
-    points: Points
-}
-
-interface DeepScatterFieldsEvent {
-    fields?: string[]
-}
-
-interface DeepScatterSchemaEvent {
-    schema?: any
-}
+export type DebugMethod = (details: DebugDetails, ...misc: DebugMisc) => void;

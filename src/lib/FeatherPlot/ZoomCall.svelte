@@ -1,7 +1,7 @@
 <script lang="ts">
   import { onMount, createEventDispatcher } from 'svelte';
   
-  import { plotArgs } from './PlotArgsStore.ts';
+  import { plotStore } from './PlotStore.ts';
   import type {BBox, ZoomCall} from './types.ts'
   import RangeSlider from './RangeSlider.svelte'
   import {defaultBBox} from './defaults.ts'
@@ -12,11 +12,11 @@
   let {x: [lowerX, upperX], y: [lowerY, upperY]} = defaultBBox
 
   onMount(() => {
-    if ($plotArgs?.zoom?.bbox) {
-      lowerX = $plotArgs.zoom.bbox.x[0]
-      upperX = $plotArgs.zoom.bbox.x[1]
-      lowerY = $plotArgs.zoom.bbox.y[0]
-      upperY = $plotArgs.zoom.bbox.y[1]
+    if ($plotStore.zoom?.bbox) {
+      lowerX = $plotStore.zoom.bbox.x[0]
+      upperX = $plotStore.zoom.bbox.x[1]
+      lowerY = $plotStore.zoom.bbox.y[0]
+      upperY = $plotStore.zoom.bbox.y[1]
     }
   })
 
@@ -31,7 +31,7 @@
   $: zoom = {bbox} as ZoomCall
   // Function to handle slider changes
   const handleSliderChange = () => {
-    plotArgs.updateZoomCall(zoom)
+    plotStore.zoom = zoom
     dispatch('change', { bbox });
   };
 
