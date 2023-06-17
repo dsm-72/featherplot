@@ -43,9 +43,21 @@
         plotStore.cField = meta.sidecars[0] // 'conditions'
     })
 
+    let args
+    // $: if(args) {        
+    //     plotStore?.plot?.plotAPI({
+    //         ...args,
+    //     })
+    // }
+
     const handleChange = async () => {
+        // args = plotStore.args
         console.log('change')
-        await plotStore.updatePlot()
+        try {
+            await plotStore.updatePlot()
+        } catch (e) {
+            console.error(e)
+        }
     }
 
 </script>

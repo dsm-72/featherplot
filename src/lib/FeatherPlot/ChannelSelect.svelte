@@ -13,7 +13,7 @@
     export let hideRange: boolean = false
     let transformChoices: Transform[] = ['literal', 'linear', 'log', 'sqrt']
 
-    export let range:  Range  | undefined = undefined
+    export let range:  Range  | string | undefined = undefined
     export let domain: Domain | undefined = undefined
     $: hasRange = !(
         (range === null) || (range === undefined) || 
@@ -54,6 +54,14 @@
         if (!col) return false
         return (col.field == field)
     }
+
+
+    const rangeToText = () => {
+        if (Array.isArray(range)) {
+            return range?.map((e) => e.toFixed(2)).join(', ')
+        }
+        return range
+    }
 </script>
 
 <div class="w-full {$$props.class}">
@@ -89,7 +97,7 @@
 
                         {#if hasRange & !hideRange}
                         <span class="text-slate-600 font-base px-4 label-text-alt">
-                            Range: [{range?.map((e) => e.toFixed(2)).join(', ')}]
+                            Range: [{rangeToText()}]
                         </span>
                         {/if}
 

@@ -13,8 +13,8 @@ columns_metadata:
     - condition 2
     - condition 3
     domain:
-    - 0
-    - 3
+    - 0.
+    - 3.
     field: conditions
     range: null
     type: CategoricalColorChannel

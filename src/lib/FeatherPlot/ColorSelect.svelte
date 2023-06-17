@@ -14,7 +14,6 @@
     const labelTemplate = (n:string) => `${n.toLocaleUpperCase()}-Axis`
     
     let cField: EncodingKey | undefined = undefined    
-    $: cField = plotStore.cField as EncodingKey
     
 
     let cEncoding: ChannelBase | undefined, cColumns: ColumnsMetadata, cChannel: ChannelBase | undefined
@@ -27,41 +26,40 @@
         cSelect = cField
     }
 
+  
     let sidecars: string[] | undefined = ($plotStore.sidecars) ? $plotStore.sidecars : []
-
     $: {
-        cField = plotStore.cField as EncodingKey
         sidecars = ($plotStore.sidecars) ? $plotStore.sidecars : []
         cColumns = plotStore.getColumnsMetadata(sidecars)
+    }
+
+
+    $: if ($plotStore) {        
+        cField = plotStore.cField as EncodingKey
         
-
-        if (cSelect !== plotStore.cField) {
-            plotStore.cField = cSelect
-            cEncoding = plotStore.getColumnAsEncoding(cSelect)
-            cChannel = plotStore.color
-        } else if (plotStore.cField !== cSelect) {
-            cSelect = plotStore.cField
-        }
-
-        cRange  = cChannel?.range  ? cChannel?.range  : undefined;
+        cChannel = plotStore.getColumnAsEncoding(cField);
+        cChannel = plotStore.color
+        cRange  = cChannel?.range  ? cChannel?.range  : 'viridis';
         cDomain = cChannel?.domain ? cChannel?.domain : undefined; 
+        // console.log(cChannel, cRange, cDomain)
 
     }
 
-    const handleCChange = ({detail:{field, transform, range, domain}}: any) => {        
+    const handleCChange = ({detail:{field, transform}}: any) => {        
         cField = field
+        cSelect = field
         cTransform = transform
-        cRange = range
-        cDomain = domain
+        cRange = 'viridis'
+        // cDomain = domain
+        plotStore.cField = field
+        cChannel = plotStore.getColumnAsEncoding(cField);
 
         let update = {
-            ...cChannel, field,  transform, range, domain
+            ...cChannel, field,  transform, 
+            range: 'viridis', 
+            //range, domain
         } as EncodingVal
-        if (!range) {
-            if (update === null) {
-                update = {} as EncodingVal
-            }
-        }
+
         plotStore.setEncoding('color', update)
         dispatch('change', {cChannel: update})
     }
@@ -69,13 +67,13 @@
 <div class="grid md:grid-cols-2 gap-2 md:gap-4">
     <ChannelSelect 
         class='w-full col-span-2'
-        field={cSelect}
+        bind:field={cSelect}
         id="{idTemplate('c')}"
         label="{labelTemplate('c')}"
         columns={cColumns}
-        transform={cTransform}
-        range={cRange}
-        domain={cDomain}
+        bind:transform={cTransform}
+        bind:range={cRange}
+        bind:domain={cDomain}
         on:change={handleCChange}
     />    
 </div>

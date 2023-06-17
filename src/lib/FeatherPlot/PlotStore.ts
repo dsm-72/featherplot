@@ -630,6 +630,10 @@ class PlotState {
   get yExtent() { return this.extents?.y || null; }
   get zExtent() { return this.extents?.z || null; }
 
+  public async updateAPI() {
+
+  }
+
   public async updatePlot() {
     this.debug(
       { status: 'Inside updatePlot'}, 
@@ -777,6 +781,8 @@ class PlotState {
       // Update encoding in store
       // store.encoding = { ...store.encoding, [key]: value };
       store.encoding[key] = value 
+      // if (key === 'conditions') this.debug({ status: 'Inside getColumnAsEncoding'}, {key, value})
+      
   
       // Auto update columns if they are out of date
       let field
@@ -852,6 +858,9 @@ class PlotState {
 
     // Step 1: get values from column metadata if it exists
     // these includ field and domain
+    // if (colname === 'conditions') this.debug({ status: 'Inside getColumnAsEncoding'}, {colname, column})
+
+    
     if (column?.field) encoding.field = column.field;
 
     if (isStringOrStrings(column?.domain)) encoding = encoding as CategoricalColorChannel;
