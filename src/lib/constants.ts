@@ -1,4 +1,6 @@
-export const DATASET_DIR = `/datasets`
+import { base } from '$app/paths';
+
+export const DATASET_DIR = `${base}/datasets`
 
 export const DEMO_DIR = `${DATASET_DIR}/demo`
 export const DEMO_TILES_DIR = `${DEMO_DIR}/tiles`
