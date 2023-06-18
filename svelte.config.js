@@ -1,4 +1,5 @@
 import adapter from '@sveltejs/adapter-auto';
+import adapter from '@sveltejs/adapter-static';
 import { vitePreprocess } from '@sveltejs/kit/vite';
 
 // NOTE: I did this from https://www.okupter.com/blog/deploy-sveltekit-website-to-github-pages
