@@ -10,7 +10,7 @@
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"test:unit": "vitest",
-		"deploy": "NODE_ENV=production; npm run build && npx gh-pages -d build -t true"
+		"deploy": "NODE_ENV=production npm run build && npx gh-pages -d build -t true"
 	},
 	"exports": {
 		".": {
@@ -24,7 +24,8 @@
 		"!dist/**/*.spec.*"
 	],
 	"peerDependencies": {
-		"svelte": "^3.54.0"
+		"svelte": "^3.54.0",
+		"@sveltejs/kit": "^1.5.0"
 	},
 	"devDependencies": {
 		"@floating-ui/core": "^1.3.0",
