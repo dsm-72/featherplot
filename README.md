@@ -65,3 +65,15 @@ then:
 ```bash
 $ npm run deploy
 ```
+
+then add this `.nojekyll` file to `gh-pages`:
+
+```json
+{
+  "scripts": {
+    "dev": "vite dev",
+    "build": "vite build",
+    "deploy": "touch build/.nojekyll && gh-pages -d build -t true"
+  }
+}
+```
