@@ -29,6 +29,21 @@ const config = {
 		base: basePath,
 		assets: basePath
   	},
+
+	// NOTE: this is from Chat GPT-4
+	vite: {
+		build: {
+			rollupOptions: {
+				output: {
+					manualChunks: undefined,
+					entryFileNames: `[name].[hash].js`,
+					chunkFileNames: `[name].[hash].js`,
+					assetFileNames: `[name].[hash][extname]`,
+				},
+			},
+			publicPath: './'
+		},		
+	},
 };
 
 export default config;
