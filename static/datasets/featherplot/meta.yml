@@ -1,0 +1,957 @@
+columns_metadata:
+  barcodes:
+    domain:
+    - 0
+    - 999
+    field: barcodes
+    range: null
+    type: CategoricalColorChannel
+  conditions:
+    categories:
+    - condition 0
+    - condition 1
+    - condition 2
+    - condition 3
+    domain:
+    - 0.
+    - 3.
+    field: conditions
+    range: null
+    type: CategoricalColorChannel
+  gene_symbol 0:
+    domain:
+    - -3.4377996507807835
+    - 2.8763227936355964
+    field: gene_symbol 0
+    range: null
+    transform: literal
+    type: BasicChannel
+  gene_symbol 1:
+    domain:
+    - -3.7817497598332634
+    - 3.116506501125785
+    field: gene_symbol 1
+    range: null
+    transform: literal
+    type: BasicChannel
+  gene_symbol 10:
+    domain:
+    - -3.4488177818665813
+    - 3.512507245874298
+    field: gene_symbol 10
+    range: null
+    transform: literal
+    type: BasicChannel
+  gene_symbol 11:
+    domain:
+    - -2.7874176568710887
+    - 2.9827104507050968
+    field: gene_symbol 11
+    range: null
+    transform: literal
+    type: BasicChannel
+  gene_symbol 12:
+    domain:
+    - -2.872368046087566
+    - 4.3014949637330355
+    field: gene_symbol 12
+    range: null
+    transform: literal
+    type: BasicChannel
+  gene_symbol 13:
+    domain:
+    - -2.8096180005266898
+    - 3.3168536880796133
+    field: gene_symbol 13
+    range: null
+    transform: literal
+    type: BasicChannel
+  gene_symbol 14:
+    domain:
+    - -3.834719944467064
+    - 3.2178826108769987
+    field: gene_symbol 14
+    range: null
+    transform: literal
+    type: BasicChannel
+  gene_symbol 15:
+    domain:
+    - -3.9669696927078912
+    - 3.2460929116558175
+    field: gene_symbol 15
+    range: null
+    transform: literal
+    type: BasicChannel
+  gene_symbol 16:
+    domain:
+    - -2.7471570611085183
+    - 2.851047763331981
+    field: gene_symbol 16
+    range: null
+    transform: literal
+    type: BasicChannel
+  gene_symbol 17:
+    domain:
+    - -3.096293730056737
+    - 3.079249412880761
+    field: gene_symbol 17
+    range: null
+    transform: literal
+    type: BasicChannel
+  gene_symbol 18:
+    domain:
+    - -3.22202617970213
+    - 3.5621912162810463
+    field: gene_symbol 18
+    range: null
+    transform: literal
+    type: BasicChannel
+  gene_symbol 19:
+    domain:
+    - -3.1902386154392652
+    - 3.109376513228409
+    field: gene_symbol 19
+    range: null
+    transform: literal
+    type: BasicChannel
+  gene_symbol 2:
+    domain:
+    - -3.4868078444445954
+    - 2.9381662756518114
+    field: gene_symbol 2
+    range: null
+    transform: literal
+    type: BasicChannel
+  gene_symbol 20:
+    domain:
+    - -3.4573309906835634
+    - 2.991250704192025
+    field: gene_symbol 20
+    range: null
+    transform: literal
+    type: BasicChannel
+  gene_symbol 21:
+    domain:
+    - -3.1715674499027986
+    - 3.4934201080682223
+    field: gene_symbol 21
+    range: null
+    transform: literal
+    type: BasicChannel
+  gene_symbol 22:
+    domain:
+    - -3.0198091238512
+    - 2.8783718130621683
+    field: gene_symbol 22
+    range: null
+    transform: literal
+    type: BasicChannel
+  gene_symbol 23:
+    domain:
+    - -3.2312617626209783
+    - 3.3402816203198937
+    field: gene_symbol 23
+    range: null
+    transform: literal
+    type: BasicChannel
+  gene_symbol 24:
+    domain:
+    - -3.528267469232712
+    - 3.276321101930743
+    field: gene_symbol 24
+    range: null
+    transform: literal
+    type: BasicChannel
+  gene_symbol 25:
+    domain:
+    - -2.7842474242448927
+    - 2.8203905865686316
+    field: gene_symbol 25
+    range: null
+    transform: literal
+    type: BasicChannel
+  gene_symbol 26:
+    domain:
+    - -2.9247160147264326
+    - 3.1783390288151816
+    field: gene_symbol 26
+    range: null
+    transform: literal
+    type: BasicChannel
+  gene_symbol 27:
+    domain:
+    - -2.9105572472429095
+    - 3.3760462207467183
+    field: gene_symbol 27
+    range: null
+    transform: literal
+    type: BasicChannel
+  gene_symbol 28:
+    domain:
+    - -3.4564589203283664
+    - 4.148310273083309
+    field: gene_symbol 28
+    range: null
+    transform: literal
+    type: BasicChannel
+  gene_symbol 29:
+    domain:
+    - -2.811947140082096
+    - 2.9332568863427855
+    field: gene_symbol 29
+    range: null
+    transform: literal
+    type: BasicChannel
+  gene_symbol 3:
+    domain:
+    - -3.138915822248115
+    - 2.908053248523851
+    field: gene_symbol 3
+    range: null
+    transform: literal
+    type: BasicChannel
+  gene_symbol 30:
+    domain:
+    - -3.4760513036399954
+    - 2.923426565906474
+    field: gene_symbol 30
+    range: null
+    transform: literal
+    type: BasicChannel
+  gene_symbol 31:
+    domain:
+    - -3.0333053455978223
+    - 3.2152669412151846
+    field: gene_symbol 31
+    range: null
+    transform: literal
+    type: BasicChannel
+  gene_symbol 32:
+    domain:
+    - -2.945621050878585
+    - 3.2407498281219222
+    field: gene_symbol 32
+    range: null
+    transform: literal
+    type: BasicChannel
+  gene_symbol 33:
+    domain:
+    - -3.4566623817560798
+    - 3.4288295306080543
+    field: gene_symbol 33
+    range: null
+    transform: literal
+    type: BasicChannel
+  gene_symbol 34:
+    domain:
+    - -3.3065474588502637
+    - 3.036762206674901
+    field: gene_symbol 34
+    range: null
+    transform: literal
+    type: BasicChannel
+  gene_symbol 35:
+    domain:
+    - -2.961070225557287
+    - 2.674715121550619
+    field: gene_symbol 35
+    range: null
+    transform: literal
+    type: BasicChannel
+  gene_symbol 36:
+    domain:
+    - -3.0345552642530285
+    - 3.2063393485312575
+    field: gene_symbol 36
+    range: null
+    transform: literal
+    type: BasicChannel
+  gene_symbol 37:
+    domain:
+    - -2.9681205687799093
+    - 3.242950160428129
+    field: gene_symbol 37
+    range: null
+    transform: literal
+    type: BasicChannel
+  gene_symbol 38:
+    domain:
+    - -2.932479045569488
+    - 3.138384166984952
+    field: gene_symbol 38
+    range: null
+    transform: literal
+    type: BasicChannel
+  gene_symbol 39:
+    domain:
+    - -3.4683052377430728
+    - 3.070510584891132
+    field: gene_symbol 39
+    range: null
+    transform: literal
+    type: BasicChannel
+  gene_symbol 4:
+    domain:
+    - -3.8812028025014733
+    - 3.278977203051959
+    field: gene_symbol 4
+    range: null
+    transform: literal
+    type: BasicChannel
+  gene_symbol 40:
+    domain:
+    - -3.3936582986222334
+    - 3.243724329852164
+    field: gene_symbol 40
+    range: null
+    transform: literal
+    type: BasicChannel
+  gene_symbol 41:
+    domain:
+    - -4.104374588634508
+    - 3.396182672981213
+    field: gene_symbol 41
+    range: null
+    transform: literal
+    type: BasicChannel
+  gene_symbol 42:
+    domain:
+    - -2.7105442176239247
+    - 2.884177809922361
+    field: gene_symbol 42
+    range: null
+    transform: literal
+    type: BasicChannel
+  gene_symbol 43:
+    domain:
+    - -3.8588291741452245
+    - 2.694117794777226
+    field: gene_symbol 43
+    range: null
+    transform: literal
+    type: BasicChannel
+  gene_symbol 44:
+    domain:
+    - -3.7625626196806286
+    - 3.1544017232308175
+    field: gene_symbol 44
+    range: null
+    transform: literal
+    type: BasicChannel
+  gene_symbol 45:
+    domain:
+    - -3.689649767432096
+    - 3.505742035619796
+    field: gene_symbol 45
+    range: null
+    transform: literal
+    type: BasicChannel
+  gene_symbol 46:
+    domain:
+    - -3.2451543936366094
+    - 3.2327964876468185
+    field: gene_symbol 46
+    range: null
+    transform: literal
+    type: BasicChannel
+  gene_symbol 47:
+    domain:
+    - -3.386469970888307
+    - 3.239261588049745
+    field: gene_symbol 47
+    range: null
+    transform: literal
+    type: BasicChannel
+  gene_symbol 48:
+    domain:
+    - -3.803743912597521
+    - 3.5461442115352444
+    field: gene_symbol 48
+    range: null
+    transform: literal
+    type: BasicChannel
+  gene_symbol 49:
+    domain:
+    - -3.3072745437376505
+    - 3.3473577372913534
+    field: gene_symbol 49
+    range: null
+    transform: literal
+    type: BasicChannel
+  gene_symbol 5:
+    domain:
+    - -2.959102224976584
+    - 3.165876306984203
+    field: gene_symbol 5
+    range: null
+    transform: literal
+    type: BasicChannel
+  gene_symbol 50:
+    domain:
+    - -3.383949997415213
+    - 3.3514021037439528
+    field: gene_symbol 50
+    range: null
+    transform: literal
+    type: BasicChannel
+  gene_symbol 51:
+    domain:
+    - -2.976464079693485
+    - 2.491899907842632
+    field: gene_symbol 51
+    range: null
+    transform: literal
+    type: BasicChannel
+  gene_symbol 52:
+    domain:
+    - -2.813292908544566
+    - 2.891401874130235
+    field: gene_symbol 52
+    range: null
+    transform: literal
+    type: BasicChannel
+  gene_symbol 53:
+    domain:
+    - -3.5101533570206476
+    - 3.092307796475811
+    field: gene_symbol 53
+    range: null
+    transform: literal
+    type: BasicChannel
+  gene_symbol 54:
+    domain:
+    - -3.9332135027335244
+    - 4.104630763997921
+    field: gene_symbol 54
+    range: null
+    transform: literal
+    type: BasicChannel
+  gene_symbol 55:
+    domain:
+    - -2.5671983919226706
+    - 3.2232222834731448
+    field: gene_symbol 55
+    range: null
+    transform: literal
+    type: BasicChannel
+  gene_symbol 56:
+    domain:
+    - -3.069289524525073
+    - 2.6196234409157197
+    field: gene_symbol 56
+    range: null
+    transform: literal
+    type: BasicChannel
+  gene_symbol 57:
+    domain:
+    - -3.173167265233299
+    - 3.9514164696664476
+    field: gene_symbol 57
+    range: null
+    transform: literal
+    type: BasicChannel
+  gene_symbol 58:
+    domain:
+    - -3.3277040442054133
+    - 3.1874114264204834
+    field: gene_symbol 58
+    range: null
+    transform: literal
+    type: BasicChannel
+  gene_symbol 59:
+    domain:
+    - -3.2504397706067776
+    - 3.0072514186520225
+    field: gene_symbol 59
+    range: null
+    transform: literal
+    type: BasicChannel
+  gene_symbol 6:
+    domain:
+    - -3.178168951523141
+    - 2.8656942803471925
+    field: gene_symbol 6
+    range: null
+    transform: literal
+    type: BasicChannel
+  gene_symbol 60:
+    domain:
+    - -2.7455877965516735
+    - 3.350676399155967
+    field: gene_symbol 60
+    range: null
+    transform: literal
+    type: BasicChannel
+  gene_symbol 61:
+    domain:
+    - -2.8388551387314274
+    - 4.019375685310862
+    field: gene_symbol 61
+    range: null
+    transform: literal
+    type: BasicChannel
+  gene_symbol 62:
+    domain:
+    - -3.0249561763586534
+    - 3.605110147882278
+    field: gene_symbol 62
+    range: null
+    transform: literal
+    type: BasicChannel
+  gene_symbol 63:
+    domain:
+    - -2.802298547663438
+    - 3.495616518728872
+    field: gene_symbol 63
+    range: null
+    transform: literal
+    type: BasicChannel
+  gene_symbol 64:
+    domain:
+    - -2.976692478903772
+    - 3.1647340372159185
+    field: gene_symbol 64
+    range: null
+    transform: literal
+    type: BasicChannel
+  gene_symbol 65:
+    domain:
+    - -3.481473692189042
+    - 3.7703159613128565
+    field: gene_symbol 65
+    range: null
+    transform: literal
+    type: BasicChannel
+  gene_symbol 66:
+    domain:
+    - -3.343381589914674
+    - 3.4998665512492972
+    field: gene_symbol 66
+    range: null
+    transform: literal
+    type: BasicChannel
+  gene_symbol 67:
+    domain:
+    - -3.5500610555461702
+    - 3.1535690179967784
+    field: gene_symbol 67
+    range: null
+    transform: literal
+    type: BasicChannel
+  gene_symbol 68:
+    domain:
+    - -3.3699568653141965
+    - 2.5787091095196906
+    field: gene_symbol 68
+    range: null
+    transform: literal
+    type: BasicChannel
+  gene_symbol 69:
+    domain:
+    - -2.5806426609381643
+    - 3.0945116122285694
+    field: gene_symbol 69
+    range: null
+    transform: literal
+    type: BasicChannel
+  gene_symbol 7:
+    domain:
+    - -3.1724546782527403
+    - 3.294137204839853
+    field: gene_symbol 7
+    range: null
+    transform: literal
+    type: BasicChannel
+  gene_symbol 70:
+    domain:
+    - -2.8518441903830563
+    - 3.0063050506459823
+    field: gene_symbol 70
+    range: null
+    transform: literal
+    type: BasicChannel
+  gene_symbol 71:
+    domain:
+    - -4.031079696051291
+    - 3.005295255212034
+    field: gene_symbol 71
+    range: null
+    transform: literal
+    type: BasicChannel
+  gene_symbol 72:
+    domain:
+    - -4.117414380468157
+    - 3.376590680896263
+    field: gene_symbol 72
+    range: null
+    transform: literal
+    type: BasicChannel
+  gene_symbol 73:
+    domain:
+    - -2.699983166498704
+    - 2.699822526988185
+    field: gene_symbol 73
+    range: null
+    transform: literal
+    type: BasicChannel
+  gene_symbol 74:
+    domain:
+    - -2.659269071027163
+    - 3.4401221002815925
+    field: gene_symbol 74
+    range: null
+    transform: literal
+    type: BasicChannel
+  gene_symbol 75:
+    domain:
+    - -3.0829725205240748
+    - 2.8263494642451503
+    field: gene_symbol 75
+    range: null
+    transform: literal
+    type: BasicChannel
+  gene_symbol 76:
+    domain:
+    - -3.0622210889644257
+    - 3.8064799684632207
+    field: gene_symbol 76
+    range: null
+    transform: literal
+    type: BasicChannel
+  gene_symbol 77:
+    domain:
+    - -3.8525457751756926
+    - 3.2330683033343366
+    field: gene_symbol 77
+    range: null
+    transform: literal
+    type: BasicChannel
+  gene_symbol 78:
+    domain:
+    - -2.758292655931216
+    - 3.073135647062099
+    field: gene_symbol 78
+    range: null
+    transform: literal
+    type: BasicChannel
+  gene_symbol 79:
+    domain:
+    - -2.8325508462125035
+    - 3.429626100237116
+    field: gene_symbol 79
+    range: null
+    transform: literal
+    type: BasicChannel
+  gene_symbol 8:
+    domain:
+    - -3.367445413808242
+    - 3.322369365146544
+    field: gene_symbol 8
+    range: null
+    transform: literal
+    type: BasicChannel
+  gene_symbol 80:
+    domain:
+    - -3.0330293859726356
+    - 3.8894684087792037
+    field: gene_symbol 80
+    range: null
+    transform: literal
+    type: BasicChannel
+  gene_symbol 81:
+    domain:
+    - -3.403780434470718
+    - 2.834928602390425
+    field: gene_symbol 81
+    range: null
+    transform: literal
+    type: BasicChannel
+  gene_symbol 82:
+    domain:
+    - -3.0283332901717555
+    - 2.7505619290997734
+    field: gene_symbol 82
+    range: null
+    transform: literal
+    type: BasicChannel
+  gene_symbol 83:
+    domain:
+    - -3.1035875945631552
+    - 3.260291078924141
+    field: gene_symbol 83
+    range: null
+    transform: literal
+    type: BasicChannel
+  gene_symbol 84:
+    domain:
+    - -3.2324060279777487
+    - 2.842272315744748
+    field: gene_symbol 84
+    range: null
+    transform: literal
+    type: BasicChannel
+  gene_symbol 85:
+    domain:
+    - -3.4559625327477166
+    - 3.2319250354921856
+    field: gene_symbol 85
+    range: null
+    transform: literal
+    type: BasicChannel
+  gene_symbol 86:
+    domain:
+    - -2.79192347070347
+    - 2.8593302240739105
+    field: gene_symbol 86
+    range: null
+    transform: literal
+    type: BasicChannel
+  gene_symbol 87:
+    domain:
+    - -3.7447578960763686
+    - 3.3436687578288726
+    field: gene_symbol 87
+    range: null
+    transform: literal
+    type: BasicChannel
+  gene_symbol 88:
+    domain:
+    - -3.056691235122905
+    - 3.3279281825026965
+    field: gene_symbol 88
+    range: null
+    transform: literal
+    type: BasicChannel
+  gene_symbol 89:
+    domain:
+    - -3.215870906063
+    - 3.3773200513161563
+    field: gene_symbol 89
+    range: null
+    transform: literal
+    type: BasicChannel
+  gene_symbol 9:
+    domain:
+    - -3.298837078696703
+    - 3.870040463018246
+    field: gene_symbol 9
+    range: null
+    transform: literal
+    type: BasicChannel
+  gene_symbol 90:
+    domain:
+    - -3.2128383975374972
+    - 3.1764682632749865
+    field: gene_symbol 90
+    range: null
+    transform: literal
+    type: BasicChannel
+  gene_symbol 91:
+    domain:
+    - -3.2717849848117093
+    - 3.228875021949655
+    field: gene_symbol 91
+    range: null
+    transform: literal
+    type: BasicChannel
+  gene_symbol 92:
+    domain:
+    - -2.735967545617128
+    - 3.904901962112123
+    field: gene_symbol 92
+    range: null
+    transform: literal
+    type: BasicChannel
+  gene_symbol 93:
+    domain:
+    - -2.739074989645624
+    - 3.3629596604082836
+    field: gene_symbol 93
+    range: null
+    transform: literal
+    type: BasicChannel
+  gene_symbol 94:
+    domain:
+    - -3.293317994132879
+    - 2.916353725449999
+    field: gene_symbol 94
+    range: null
+    transform: literal
+    type: BasicChannel
+  gene_symbol 95:
+    domain:
+    - -3.194793396675071
+    - 3.286992729134853
+    field: gene_symbol 95
+    range: null
+    transform: literal
+    type: BasicChannel
+  gene_symbol 96:
+    domain:
+    - -3.693930419139215
+    - 2.7507821502008802
+    field: gene_symbol 96
+    range: null
+    transform: literal
+    type: BasicChannel
+  gene_symbol 97:
+    domain:
+    - -3.9624423918727243
+    - 3.1999077731220265
+    field: gene_symbol 97
+    range: null
+    transform: literal
+    type: BasicChannel
+  gene_symbol 98:
+    domain:
+    - -3.1478022539774897
+    - 3.959900767135353
+    field: gene_symbol 98
+    range: null
+    transform: literal
+    type: BasicChannel
+  gene_symbol 99:
+    domain:
+    - -3.368231271244324
+    - 2.836827930261756
+    field: gene_symbol 99
+    range: null
+    transform: literal
+    type: BasicChannel
+  x:
+    domain:
+    - -3.213912509263628
+    - 3.404255988668695
+    field: x
+    human: MOCK_0
+    range: null
+    transform: literal
+    type: BasicChannel
+  y:
+    domain:
+    - -3.376824085552365
+    - 3.403715415588244
+    field: y
+    human: MOCK_1
+    range: null
+    transform: literal
+    type: BasicChannel
+  z:
+    domain:
+    - -3.551915583450642
+    - 3.2020057875831704
+    field: z
+    human: MOCK_2
+    range: null
+    transform: literal
+    type: BasicChannel
+embedding:
+- x
+- y
+- z
+full_path: ~/Downloads/featherplot/tiles
+index: barcodes
+n_points: 1000
+sidecars:
+- conditions
+- gene_symbol 0
+- gene_symbol 1
+- gene_symbol 10
+- gene_symbol 11
+- gene_symbol 12
+- gene_symbol 13
+- gene_symbol 14
+- gene_symbol 15
+- gene_symbol 16
+- gene_symbol 17
+- gene_symbol 18
+- gene_symbol 19
+- gene_symbol 2
+- gene_symbol 20
+- gene_symbol 21
+- gene_symbol 22
+- gene_symbol 23
+- gene_symbol 24
+- gene_symbol 25
+- gene_symbol 26
+- gene_symbol 27
+- gene_symbol 28
+- gene_symbol 29
+- gene_symbol 3
+- gene_symbol 30
+- gene_symbol 31
+- gene_symbol 32
+- gene_symbol 33
+- gene_symbol 34
+- gene_symbol 35
+- gene_symbol 36
+- gene_symbol 37
+- gene_symbol 38
+- gene_symbol 39
+- gene_symbol 4
+- gene_symbol 40
+- gene_symbol 41
+- gene_symbol 42
+- gene_symbol 43
+- gene_symbol 44
+- gene_symbol 45
+- gene_symbol 46
+- gene_symbol 47
+- gene_symbol 48
+- gene_symbol 49
+- gene_symbol 5
+- gene_symbol 50
+- gene_symbol 51
+- gene_symbol 52
+- gene_symbol 53
+- gene_symbol 54
+- gene_symbol 55
+- gene_symbol 56
+- gene_symbol 57
+- gene_symbol 58
+- gene_symbol 59
+- gene_symbol 6
+- gene_symbol 60
+- gene_symbol 61
+- gene_symbol 62
+- gene_symbol 63
+- gene_symbol 64
+- gene_symbol 65
+- gene_symbol 66
+- gene_symbol 67
+- gene_symbol 68
+- gene_symbol 69
+- gene_symbol 7
+- gene_symbol 70
+- gene_symbol 71
+- gene_symbol 72
+- gene_symbol 73
+- gene_symbol 74
+- gene_symbol 75
+- gene_symbol 76
+- gene_symbol 77
+- gene_symbol 78
+- gene_symbol 79
+- gene_symbol 8
+- gene_symbol 80
+- gene_symbol 81
+- gene_symbol 82
+- gene_symbol 83
+- gene_symbol 84
+- gene_symbol 85
+- gene_symbol 86
+- gene_symbol 87
+- gene_symbol 88
+- gene_symbol 89
+- gene_symbol 9
+- gene_symbol 90
+- gene_symbol 91
+- gene_symbol 92
+- gene_symbol 93
+- gene_symbol 94
+- gene_symbol 95
+- gene_symbol 96
+- gene_symbol 97
+- gene_symbol 98
+- gene_symbol 99
+tiles_dir: /datasets/featherplot/tiles

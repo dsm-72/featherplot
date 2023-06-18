@@ -1,0 +1,98 @@
+column_metadata:
+  boolean:
+    domain:
+    - 0
+    - 1
+    is_sidecar: true
+    max: 1
+    min: 0
+    name: boolean
+    text: boolean
+    type: bool
+  category:
+    domain:
+    - 0
+    - 11
+    is_sidecar: true
+    max: 11
+    min: 0
+    name: category
+    text: category
+    type: category
+  continuous:
+    domain:
+    - -4.215015696261412
+    - 3.874398074539181
+    is_sidecar: true
+    max: 3.874398074539181
+    min: -4.215015696261412
+    name: continuous
+    text: continuous
+    type: float64
+  feature:
+    domain:
+    - -4.05267693670656
+    - 4.485939729947336
+    is_sidecar: true
+    max: 4.485939729947336
+    min: -4.05267693670656
+    name: feature
+    text: feature
+    type: float64
+  target:
+    domain:
+    - -4.003672942066606
+    - 4.129585324495455
+    is_sidecar: true
+    max: 4.129585324495455
+    min: -4.003672942066606
+    name: target
+    text: target
+    type: float64
+  x:
+    domain:
+    - -4.602974618564708
+    - 4.091392759573651
+    is_sidecar: false
+    max: 4.091392759573651
+    min: -4.602974618564708
+    name: x
+    text: fake-SNE X
+    type: float64
+  y:
+    domain:
+    - -3.7436594075156626
+    - 4.47601097459602
+    is_sidecar: false
+    max: 4.47601097459602
+    min: -3.7436594075156626
+    name: y
+    text: fake-SNE Y
+    type: float64
+  z:
+    domain:
+    - -4.7833695471027085
+    - 4.366929544147205
+    is_sidecar: false
+    max: 4.366929544147205
+    min: -4.7833695471027085
+    name: z
+    text: fake-SNE Z
+    type: float64
+dataset_name: named
+embedding_columns:
+- x
+- y
+- z
+label_name: label
+n_points: 20000
+seed: 3
+sidecar_columns:
+- category
+- boolean
+- continuous
+- feature
+- target
+target_dir: /datasets/named
+tile_size: 1000
+tiles_dir: /datasets/named/tiles
