@@ -6,7 +6,7 @@ import type {
     ConstantChannel,
     LambdaChannel,
     ConditionalChannel,
-  } from "./types.ts";
+} from "./types.ts";
 
 import { isObject,} from "./utils.ts";
 
