@@ -9,8 +9,8 @@
 		"prepublishOnly": "npm run package",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
-		"test:unit": "vitest",
-		"deploy": "NODE_ENV=production npm run build && npx gh-pages -d build -t true"
+		"test:unit": "vitest",		
+		"deploy": "NODE_ENV=production && touch build/.nojekyll && npm run build && npx gh-pages -d build -t true"
 	},
 	"exports": {
 		".": {
