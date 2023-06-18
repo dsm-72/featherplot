@@ -15,11 +15,13 @@
     let [debug, pause] = [plotStore.isDebug, plotStore.isPause]
     import { base } from '$app/paths';
 
+    import {TILES_DIR} from '../lib/constants.ts'
+
     onMount(async() => {
         
         await meta
-        
-        plotStore.url = `${base}${meta.tiles_dir}`
+        console.log(`${base}${meta.tiles_dir}`, TILES_DIR)
+        plotStore.url = TILES_DIR//`${base}${meta.tiles_dir}`
         plotStore.totalPoints = meta.n_points
         plotStore.embedding = meta.embedding
         plotStore.sidecars = meta.sidecars
