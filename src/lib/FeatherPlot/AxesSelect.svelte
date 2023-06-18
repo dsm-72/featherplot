@@ -5,8 +5,7 @@
     import type {
         Range, Domain, Transform, ColumnsMetadata, 
         EncodingKey, EncodingVal, ChannelBase,
-    } from './types.ts'
-    // import AxesSelect from './AxesSelect.svelte';
+    } from './types.ts'    
     import ChannelSelect from './ChannelSelect.svelte';
 
     const dispatch = createEventDispatcher();
@@ -32,54 +31,6 @@
     let yRange  = yChannel?.range  ? yChannel?.range  : undefined;
     let yDomain = yChannel?.domain ? yChannel?.domain : undefined;
     let yTransform: Transform = yChannel?.transform ? yChannel?.transform : 'literal'
-
-    $: {
-
-        // embnames = ($plotStore.embedding) ? $plotStore.embedding : []
-
-        // xColNames = [...embnames].filter(column => column !== (yField));
-        // yColNames = [...embnames].filter(column => column !== (xField));
-
-        // xColumns = plotStore.getColumnsMetadata(xColNames)
-        // yColumns = plotStore.getColumnsMetadata(yColNames)
-
-        // xEncoding = plotStore.getColumnAsEncoding(xField)
-        // yEncoding = plotStore.getColumnAsEncoding(yField)
-                
-        // xChannel = plotStore.x
-        // yChannel = plotStore.y
-        
-        // if (xSelect) {
-        //     plotStore.xField = xSelect
-        //     xEncoding = plotStore.getColumnAsEncoding(xField)
-        //     xChannel = plotStore.x
-
-        // } else if (plotStore.xField && !xSelect) {
-        //     xSelect = plotStore.xField
-
-        // } 
-        
-        // if (ySelect) {
-        //     plotStore.yField = ySelect
-        //     yEncoding = plotStore.getColumnAsEncoding(yField)
-        //     yChannel = plotStore.y         
-
-        // } else if (plotStore.yField && !ySelect) {
-        //     ySelect = plotStore.yField
-
-        // } 
-
-        // xRange  = xChannel?.range  ? xChannel?.range  : undefined;
-        // xDomain = xChannel?.domain ? xChannel?.domain : undefined;  
-        // yRange  = yChannel?.range  ? yChannel?.range  : undefined;
-        // yDomain = yChannel?.domain ? yChannel?.domain : undefined; 
-    }
-
-    // $: update = {
-    //     ...channel,
-    //     field,  transform,
-    //     range, domain,
-    // } as EncodingVal    
 
     $: if (xField && !xSelect) {
         xSelect = xField
@@ -170,19 +121,4 @@
         domain={yDomain}
         on:change={handleYChange}
     />
-    <!-- <AxisSelect 
-        y on:change={yChange}
-    /> -->
-    <!-- <RootChannel 
-        columns={xColumns}
-        name="x"
-        label="X-axis"
-        on:change={xChange}
-    />
-    <RootChannel 
-        columns={yColumns}
-        name="y"
-        label="Y-axis"
-        on:change={yChange}
-    /> -->
 </div>
