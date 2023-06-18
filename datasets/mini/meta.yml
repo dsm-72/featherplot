@@ -1,0 +1,98 @@
+column_metadata:
+  boolean:
+    domain:
+    - 0
+    - 1
+    is_sidecar: true
+    max: 1
+    min: 0
+    name: boolean
+    text: boolean
+    type: bool
+  category:
+    domain:
+    - 0
+    - 10
+    is_sidecar: true
+    max: 10
+    min: 0
+    name: category
+    text: category
+    type: category
+  continuous:
+    domain:
+    - -3.035644272285426
+    - 3.100205719712989
+    is_sidecar: true
+    max: 3.100205719712989
+    min: -3.035644272285426
+    name: continuous
+    text: continuous
+    type: float64
+  feature:
+    domain:
+    - -3.5061365531605886
+    - 3.255996620990326
+    is_sidecar: true
+    max: 3.255996620990326
+    min: -3.5061365531605886
+    name: feature
+    text: feature
+    type: float64
+  target:
+    domain:
+    - -3.083501659097842
+    - 4.091392759573651
+    is_sidecar: true
+    max: 4.091392759573651
+    min: -3.083501659097842
+    name: target
+    text: target
+    type: float64
+  x:
+    domain:
+    - -3.0513130596790443
+    - 2.9594089505206553
+    is_sidecar: false
+    max: 2.9594089505206553
+    min: -3.0513130596790443
+    name: x
+    text: x
+    type: float64
+  y:
+    domain:
+    - -3.1739823009373724
+    - 3.7024582375998607
+    is_sidecar: false
+    max: 3.7024582375998607
+    min: -3.1739823009373724
+    name: y
+    text: y
+    type: float64
+  z:
+    domain:
+    - -2.9839702048819636
+    - 2.872599708899205
+    is_sidecar: false
+    max: 2.872599708899205
+    min: -2.9839702048819636
+    name: z
+    text: z
+    type: float64
+dataset_name: mini
+embedding_columns:
+- x
+- y
+- z
+label_name: label
+n_points: 1000
+seed: 3
+sidecar_columns:
+- category
+- boolean
+- continuous
+- feature
+- target
+target_dir: /datasets/mini
+tile_size: 100
+tiles_dir: /datasets/mini/tiles
