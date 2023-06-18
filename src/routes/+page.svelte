@@ -13,13 +13,13 @@
     import FeatherPlot from '$lib/FeatherPlot/FeatherPlot.svelte'
     plotStore.LoadDeepscatter()
     let [debug, pause] = [plotStore.isDebug, plotStore.isPause]
-    
+    import { base } from '$app/paths';
 
     onMount(async() => {
         
         await meta
         
-        plotStore.url = meta.tiles_dir
+        plotStore.url = `${base}${meta.tiles_dir}`
         plotStore.totalPoints = meta.n_points
         plotStore.embedding = meta.embedding
         plotStore.sidecars = meta.sidecars
