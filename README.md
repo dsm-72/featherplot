@@ -48,3 +48,20 @@ To publish your library to [npm](https://www.npmjs.com):
 ```bash
 npm publish
 ```
+
+
+## Deploying to GitHub Pages
+
+Add this to `package.json`:
+
+```json
+"scripts": {
+  "deploy": "NODE_ENV=production; npm run build && npx gh-pages -d build -t true"
+}
+```
+
+then:
+
+```bash
+$ npm run deploy
+```
