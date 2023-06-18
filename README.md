@@ -1,33 +1,28 @@
-# create-svelte
+# FeatherPlot
 
-Everything you need to build a Svelte library, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+This is a lightweight wrapper around [`deepscatter`][deepscatter] created by Benjamin Schmidt ([@bmschmidt](https://github.com/bmschmidt)). 
 
-Read more about creating a library [in the docs](https://kit.svelte.dev/docs/packaging).
+Of note is that there is a companion library in python [`featherplot`][featherplot-pypi].
+If you look on [GitHub][featherplot-py], there is an [example notebook][featherplot-py-example] that demonstrates a pipeline for converting a Pandas DataFrame to the feather format using [`quadfeather`][quadfeather] as well as how to add sidecars (extra data).
 
-## Creating a project
+As for this library, it has three main purposes:
+1. assist with debugging the [`deepscatter`][deepscatter] library. (The [example notebooks][featherplot-csv-example] even found one with using `csv` data.).
 
-If you're seeing this, you've probably already done this step. Congrats!
+2. assist with understanding the `plot.plotAPI({...args})` which are inspired by [vega-lite][vega-lite]. 
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
+3. provide some utility functionality for interactivity with a `deepscatter` plot e.g. axes selectors, color selectors, number of point sliders, etc.
 
-# create a new project in my-app
-npm create svelte@latest my-app
-```
+[vega-lite]: https://vega.github.io/vega-lite/docs/encoding.html
+[bmschmidt]: https://github.com/bmschmidt
+[quadfeather]: git+https://github.com/bmschmidt/quadfeather
+[deepscatter]: https://github.com/nomic-ai/deepscatter/tree/main
 
-## Developing
+[featherplot-py]: https://github.com/dsm-72/featherplot-py
+[featherplot-pypi]: https://pypi.org/project/featherplot/
+[featherplot-py-example]: https://github.com/dsm-72/featherplot-py/blob/main/examples/00_test.ipynb
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+[featherplot-csv-example]: (https://github.com/dsm-72/featherplot-svelte/blob/main/nbs/02_Generate_Named_Data.ipynb)
 
-```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-Everything inside `src/lib` is part of your library, everything inside `src/routes` can be used as a showcase or preview app.
 
 ## Building
 
@@ -45,11 +40,8 @@ npm run build
 
 You can preview the production build with `npm run preview`.
 
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
 
 ## Publishing
-
-Go into the `package.json` and give your package the desired name through the `"name"` option. Also consider adding a `"license"` field and point it to a `LICENSE` file which you can create from a template (one popular option is the [MIT license](https://opensource.org/license/mit/)).
 
 To publish your library to [npm](https://www.npmjs.com):
 

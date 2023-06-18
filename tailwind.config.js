@@ -2,7 +2,21 @@
 export default {
   content: ['./src/**/*.{html,js,svelte,ts}'],
   theme: {
-    extend: {},
+    extend: {
+      aspectRatio: {
+        '16/9': [16, 9],
+        '12/8': [12, 8],
+        '4/3': [4, 3],
+      },
+      zIndex: {
+        '500': '500',
+        '1000': '1000',
+        '5000': '5000',
+      },
+      variants: {
+        aspectRatio: ['responsive', 'hover']
+      }
+    }
   },
   plugins: [
     require('@tailwindcss/typography'),

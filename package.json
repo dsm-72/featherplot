@@ -1,6 +1,6 @@
 {
 	"name": "featherplot",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build && npm run package",
@@ -9,7 +9,8 @@
 		"prepublishOnly": "npm run package",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
-		"test:unit": "vitest"
+		"test:unit": "vitest",
+		"deploy": "NODE_ENV=production; npm run build && npx gh-pages -d build -t true"
 	},
 	"exports": {
 		".": {
@@ -44,7 +45,8 @@
 		"tslib": "^2.4.1",
 		"typescript": "^5.0.0",
 		"vite": "^4.3.0",
-		"vitest": "^0.25.3"
+		"vitest": "^0.25.3",
+		"gh-pages": "^5.0.0"
 	},
 	"svelte": "./dist/index.js",
 	"types": "./dist/index.d.ts",

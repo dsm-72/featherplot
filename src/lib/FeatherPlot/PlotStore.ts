@@ -193,6 +193,78 @@ class PlotState {
   private autofitUnsubscribe : any;
   public browser = browser;
   public Deepscatter: any;
+
+  // timer for debounced plotting
+  private timer: ReturnType<typeof setTimeout>;
+  // timer for debounced destroying
+  private dimer: ReturnType<typeof setTimeout>;
+  private delayPlotAPI: number = 500;
+  private delayDestory: number = 250;
+  private destroying: boolean = false
+
+  public debouncePlotAPI = () => {
+    if (this.plotting) return
+    this.debug({status:'debouncePlotAPI'}, {plotting:this.plotting, ready:this.ready})
+    // NOTE: this can result in the following warning: 
+    //       There are too many active WebGL contexts on this page, 
+    //       the oldest context will be lost.
+    clearTimeout(this.timer);
+
+    this.plotting = true
+    this.timer = setTimeout(async () => {                 
+      this.plot?.plotAPI({...this.args})
+        .then(() => this.ready = true)      
+        .then(() => {
+          this.isDebug ? window.plot = this.plot : null;
+        })
+        .then(() => this.plotting = false)                       
+    }, this.delayPlotAPI);
+  }
+
+  // ------------------------------------------------------------------------------------------------------------------
+  // !!! WARNING !!! WARNING !!! WARNING !!!
+  // !!! WARNING !!! WARNING !!! WARNING !!!
+  // NOTE: the creator of deepscatter has not implemented a destroy function
+  // and has urged strongly to not use it, even exclude it completely from development.
+  // I am including it here only as it was in the original hacky implementation of redraw.
+  // !!! WARNING !!! WARNING !!! WARNING !!!
+  // !!! WARNING !!! WARNING !!! WARNING !!!
+  // ------------------------------------------------------------------------------------------------------------------
+  public debounceDestroy = async () => {
+    if (this.destroying) return
+    // NOTE: this can result in the following warning: 
+    //       There are too many active WebGL contexts on this page, 
+    //       the oldest context will be lost.
+    clearTimeout(this.dimer);
+    this.destroying = true
+    return new Promise((resolve) => {
+      this.dimer = setTimeout(async () => {
+        this.debug({status:'debounceDestroy timeout'}, {destroying:this.destroying, ready:this.ready})
+        this.destroy().then(() => {
+          resolve()
+          this.destroying = false
+          this.destroyWebGLInstances()
+        })  
+      }, this.delayDestory);
+    });
+  };
+
+  public destroy = async () => {
+    if (this.plot !== null) {
+      this.plot.destroy()
+      this.debug({status:'destroyed'}, {plot:this.plot, ready:this.ready})      
+      this.ready = false;
+    }
+    return Promise.resolve();
+  }
+
+
+
+
+
+
+
+
   public async LoadDeepscatter() {
     const Scatterplot = await import('deepscatter'); 
     this.Deepscatter = Scatterplot.default; 
@@ -247,8 +319,14 @@ class PlotState {
     }
   }
 
-  public samplePoints() {}
-  public reinitializeZoom() {}
+  public samplePoints(n:number) {
+    let points = this.plot?.sample(n)
+    return points
+  }
+
+  public reinitializeZoom() {
+    this.plot?._zoom.initialize_zoom()
+  }
   
   public destroyWebGLInstances() {
     let { debug } = get(this.store);

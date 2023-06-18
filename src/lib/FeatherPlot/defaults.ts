@@ -1,9 +1,5 @@
 import type {
-  PlotArgs, ZoomCall, 
-  RootChannel, 
-  Encoding, EncodingKey, 
-  EncodingVal, EncodingChannels,
-  BBox,
+  ZoomCall, BBox,
 } from './types.ts';
 
 

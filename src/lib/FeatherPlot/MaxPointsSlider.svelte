@@ -4,8 +4,7 @@
     import { plotStore } from './PlotStore.ts';
     import Slider from './Slider.svelte'
     import { createEventDispatcher } from 'svelte';
-    import Page from '../../routes/+page.svelte';
-
+    
     const dispatch = createEventDispatcher();
     let min = 10;
     let lower = $plotStore.maxPoints || 100

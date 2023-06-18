@@ -6,7 +6,6 @@
         Range, Domain, Transform, ColumnsMetadata, 
         EncodingKey, EncodingVal, ChannelBase,
     } from './types.ts'
-    import AxesSelect from './AxesSelect.svelte';
 
     const dispatch = createEventDispatcher();
 
@@ -65,9 +64,6 @@
     
     let transform: Transform = channel?.transform ? channel?.transform : 'literal'
     let transformChoices: Transform[] = ['literal', 'linear', 'log', 'sqrt']
-    
-    // $: range  = channel?.range ? channel?.range : undefined;
-    // $: domain = channel?.domain ? channel?.domain : undefined;
 
     $: update = {
         ...channel,
