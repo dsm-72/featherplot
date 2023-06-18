@@ -41,8 +41,6 @@
         cChannel = plotStore.color
         cRange  = cChannel?.range  ? cChannel?.range  : 'viridis';
         cDomain = cChannel?.domain ? cChannel?.domain : undefined; 
-        // console.log(cChannel, cRange, cDomain)
-
     }
 
     const handleCChange = ({detail:{field, transform}}: any) => {        
